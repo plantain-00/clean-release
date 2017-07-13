@@ -1,7 +1,7 @@
 module.exports = {
   include: [
-    'bin/clean-release',
-    'dist/index.js',
+    'bin/*',
+    'dist/*.js',
     'LICENSE',
     'package.json',
     'README.md'
