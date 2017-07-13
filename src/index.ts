@@ -9,6 +9,7 @@ import * as fs from "fs";
 import cpy = require("cpy");
 import * as mkdirp from "mkdirp";
 import * as childProcess from "child_process";
+import * as rimraf from "rimraf";
 import * as packageJson from "../package.json";
 
 function showToolVersion() {
@@ -96,11 +97,12 @@ async function executeCommandLine() {
         }
 
         if (configData.postScript) {
-            await exec(configData.postScript);
+            await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
         }
-        result.removeCallback();
+
+        rimraf.sync(result.name);
     } catch (error) {
-        result.removeCallback();
+        rimraf.sync(result.name);
         throw error;
     }
 }

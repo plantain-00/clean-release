@@ -1,6 +1,6 @@
 {
   "name": "clean-release",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation, or deployment",
   "main": "index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.3.29",
     "@types/node": "8.0.11",
+    "@types/rimraf": "0.0.28",
     "@types/tmp": "0.0.33",
     "jasmine": "2.6.0",
     "rimraf": "2.6.1",

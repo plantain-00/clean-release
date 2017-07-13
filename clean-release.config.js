@@ -8,5 +8,5 @@ module.exports = {
   ],
   exclude: [
   ],
-  postScript: 'npm publish . --access public'
+  postScript: 'npm publish [dir] --access public'
 }
