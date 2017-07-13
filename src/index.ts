@@ -78,10 +78,25 @@ async function executeCommandLine() {
     const result = tmp.dirSync();
     printInConsole(`Tmp Dir: ${result.name}`);
     try {
+        if (configData.releaseRepository) {
+            if (configData.releaseBranchName) {
+                await exec(`git clone -b ${configData.releaseBranchName} ${configData.releaseRepository} "${result.name}" --depth=1`);
+            } else {
+                await exec(`git clone ${configData.releaseRepository} "${result.name}" --depth=1`);
+            }
+
+            const fileOrDirectories = fs.readdirSync(result.name);
+            for (const fileOrDirectory of fileOrDirectories) {
+                if (!fs.statSync(fileOrDirectory).isDirectory() || fileOrDirectory !== ".git") {
+                    rimraf.sync(path.resolve(result.name, fileOrDirectory));
+                }
+            }
+        }
+
         const files = await Promise.all(configData.include.map(file => globAsync(file)));
         let uniqFiles = uniq(flatten(files));
         if (configData.exclude) {
-            uniqFiles = uniqFiles.filter(file => configData.exclude.every(excludeFile => !minimatch(file, excludeFile)));
+            uniqFiles = uniqFiles.filter(file => configData.exclude && configData.exclude.every(excludeFile => !minimatch(file, excludeFile)));
         }
 
         for (const file of uniqFiles) {
@@ -98,11 +113,15 @@ async function executeCommandLine() {
             }
         }
 
+        if (configData.releaseRepository) {
+            await exec(`cd ${result.name} && git add * --force && git commit -m "new release" && git push`);
+        }
+
         if (configData.postScript) {
             await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
         }
 
-        rimraf.sync(result.name);
+        // rimraf.sync(result.name);
     } catch (error) {
         rimraf.sync(result.name);
         throw error;
@@ -116,6 +135,8 @@ executeCommandLine().catch(error => {
 
 type ConfigData = {
     include: string[];
-    exclude: string[];
-    postScript: string;
+    exclude?: string[];
+    postScript?: string;
+    releaseRepository?: string;
+    releaseBranchName?: string;
 };
