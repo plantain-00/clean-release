@@ -121,7 +121,7 @@ async function executeCommandLine() {
             await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
         }
 
-        // rimraf.sync(result.name);
+        rimraf.sync(result.name);
     } catch (error) {
         rimraf.sync(result.name);
         throw error;
