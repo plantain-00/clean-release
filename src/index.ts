@@ -89,11 +89,13 @@ async function executeCommandLine() {
                 throw new Error(`Error: file: "${file}" not exists.`);
             }
 
-            const directoryPath = path.resolve(result.name, path.relative(".", path.dirname(file)));
-            await mkdirpAsync(directoryPath);
+            if (fs.statSync(file).isFile()) {
+                const directoryPath = path.resolve(result.name, path.relative(".", path.dirname(file)));
+                await mkdirpAsync(directoryPath);
 
-            await cpy(file, directoryPath);
-            printInConsole(`Copied: ${file}`);
+                await cpy(file, directoryPath);
+                printInConsole(`Copied: ${file}`);
+            }
         }
 
         if (configData.postScript) {
