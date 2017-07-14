@@ -118,12 +118,22 @@ async function executeCommandLine() {
         }
 
         if (configData.postScript) {
-            await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
+            if (Array.isArray(configData.postScript)) {
+                for (const postScript of configData.postScript) {
+                    await exec(postScript.split("[dir]").join(`"${result.name}"`));
+                }
+            } else {
+                await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
+            }
         }
 
-        rimraf.sync(result.name);
+        if (!configData.notClean) {
+            rimraf.sync(result.name);
+        }
     } catch (error) {
-        rimraf.sync(result.name);
+        if (!configData.notClean) {
+            rimraf.sync(result.name);
+        }
         throw error;
     }
 }
@@ -136,7 +146,8 @@ executeCommandLine().catch(error => {
 type ConfigData = {
     include: string[];
     exclude?: string[];
-    postScript?: string;
+    postScript?: string | string[];
     releaseRepository?: string;
     releaseBranchName?: string;
+    notClean?: boolean;
 };

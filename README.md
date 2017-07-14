@@ -5,7 +5,7 @@
 [![Downloads](https://img.shields.io/npm/dm/clean-release.svg)](https://www.npmjs.com/package/clean-release)
 
 # clean-release
-A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation,  or deployment
+A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation or deployment
 
 #### install
 
@@ -21,6 +21,32 @@ key | type | description
 --- | --- | ---
 include | string[] | the files included, support glob
 exclude | string[]? | the files excluded, support glob
-postScript | string? | used to publish to npm, eg: `npm publish [dir] --access public`
+postScript | string? or string[] | used to publish to npm, eg: `npm publish [dir] --access public`
 releaseRepository | string? | used to publish to a git release repository, eg: `https://github.com/plantain-00/baogame-release.git`
 releaseBranchName | string? | the branch name of the release repository
+notClean | string? | if true, do not clean the tmp directory
+
+#### electronjs packaging demo
+
+```js
+module.exports = {
+  include: [
+    'libs.js',
+    'main.js',
+    'config.js',
+    'index.css',
+    'scripts/index.js',
+    'index.html',
+    'LICENSE',
+    'package.json',
+    'README.md'
+  ],
+  exclude: [
+  ],
+  postScript: [
+    'cd [dir] && npm i --production',
+    'electron-packager [dir] "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=darwin --ignore="dist/"',
+    'electron-packager [dir] "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=win32 --ignore="dist/"'
+  ]
+}
+```
