@@ -114,7 +114,7 @@ async function executeCommandLine() {
         }
 
         if (configData.releaseRepository) {
-            await exec(`cd ${result.name} && git add * --force && git commit -m "new release" && git push`);
+            await exec(`cd ${result.name} && git add -A --force && git commit -m "new release" && git push`);
         }
 
         if (configData.postScript) {
