@@ -8,5 +8,6 @@ module.exports = {
   ],
   exclude: [
   ],
+  base: 'dist',
   postScript: 'npm publish [dir] --access public'
 }

@@ -8,7 +8,3 @@ declare module "lodash.uniq" {
     export = uniq;
     namespace uniq { }
 }
-
-declare module "*.json" {
-    export const version: string;
-}

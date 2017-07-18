@@ -10,11 +10,6 @@ import cpy = require("cpy");
 import * as mkdirp from "mkdirp";
 import * as childProcess from "child_process";
 import * as rimraf from "rimraf";
-import * as packageJson from "../package.json";
-
-function showToolVersion() {
-    printInConsole(`Version: ${packageJson.version}`);
-}
 
 function printInConsole(message: any) {
     // tslint:disable-next-line:no-console
@@ -61,12 +56,6 @@ function exec(command: string) {
 async function executeCommandLine() {
     const argv = minimist(process.argv.slice(2), { "--": true });
 
-    const showVersion = argv.v || argv.version;
-    if (showVersion) {
-        showToolVersion();
-        return;
-    }
-
     let config: string | undefined = argv.config;
     if (!config) {
         config = "clean-release.config.js";
@@ -105,11 +94,15 @@ async function executeCommandLine() {
             }
 
             if (fs.statSync(file).isFile()) {
-                const directoryPath = path.resolve(result.name, path.relative(".", path.dirname(file)));
+                let relativePath = path.relative(".", path.dirname(file));
+                if (configData.base && relativePath.startsWith(configData.base)) {
+                    relativePath = path.relative(configData.base, relativePath);
+                }
+                const directoryPath = path.resolve(result.name, relativePath);
                 await mkdirpAsync(directoryPath);
 
                 await cpy(file, directoryPath);
-                printInConsole(`Copied: ${file}`);
+                printInConsole(`Copied: ${file} To:  ${relativePath}`);
             }
         }
 
@@ -146,6 +139,7 @@ executeCommandLine().catch(error => {
 type ConfigData = {
     include: string[];
     exclude?: string[];
+    base?: string;
     postScript?: string | string[];
     releaseRepository?: string;
     releaseBranchName?: string;
