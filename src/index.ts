@@ -10,6 +10,11 @@ import cpy = require("cpy");
 import * as mkdirp from "mkdirp";
 import * as childProcess from "child_process";
 import * as rimraf from "rimraf";
+import * as packageJson from "../package.json";
+
+function showToolVersion() {
+    printInConsole(`Version: ${packageJson.version}`);
+}
 
 function printInConsole(message: any) {
     // tslint:disable-next-line:no-console
@@ -55,6 +60,12 @@ function exec(command: string) {
 
 async function executeCommandLine() {
     const argv = minimist(process.argv.slice(2), { "--": true });
+
+    const showVersion = argv.v || argv.version;
+    if (showVersion) {
+        showToolVersion();
+        return;
+    }
 
     let config: string | undefined = argv.config;
     if (!config) {
