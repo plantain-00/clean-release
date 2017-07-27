@@ -4,15 +4,11 @@
   "description": "A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation, or deployment",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist/",
-    "tsc": "tsc -p src/",
-    "tslint": "tslint \"src/**/*.ts\"",
-    "test": "tsc -p spec && jasmine",
-    "release": "./bin/clean-release",
-    "build": "npm run clean && npm run tsc",
-    "lint": "npm run tslint && npm run standard",
-    "standard": "standard \"**/*.config.js\"",
-    "fix": "standard --fix \"**/*.config.js\""
+    "build": "clean-scripts build",
+    "lint": "clean-scripts lint",
+    "test": "clean-scripts test",
+    "fix": "clean-scripts fix",
+    "release": "./bin/clean-release"
   },
   "repository": {
     "type": "git",
@@ -34,6 +30,7 @@
     "@types/node": "8.0.11",
     "@types/rimraf": "0.0.28",
     "@types/tmp": "0.0.33",
+    "clean-scripts": "1.0.0",
     "jasmine": "2.6.0",
     "standard": "10.0.2",
     "tslint": "5.5.0",
