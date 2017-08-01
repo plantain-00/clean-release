@@ -1,6 +1,7 @@
 [![Dependency Status](https://david-dm.org/plantain-00/clean-release.svg)](https://david-dm.org/plantain-00/clean-release)
 [![devDependency Status](https://david-dm.org/plantain-00/clean-release/dev-status.svg)](https://david-dm.org/plantain-00/clean-release#info=devDependencies)
-[![Build Status](https://travis-ci.org/plantain-00/clean-release.svg?branch=master)](https://travis-ci.org/plantain-00/clean-release)
+[![Build Status: Linux](https://travis-ci.org/plantain-00/clean-release.svg?branch=master)](https://travis-ci.org/plantain-00/clean-release)
+[![Build Status: Windows](https://ci.appveyor.com/api/projects/status/github/plantain-00/clean-release?branch=master&svg=true)](https://ci.appveyor.com/project/plantain-00/clean-release/branch/master)
 [![npm version](https://badge.fury.io/js/clean-release.svg)](https://badge.fury.io/js/clean-release)
 [![Downloads](https://img.shields.io/npm/dm/clean-release.svg)](https://www.npmjs.com/package/clean-release)
 

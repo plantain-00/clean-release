@@ -26,21 +26,21 @@
     "@types/jasmine": "2.5.53",
     "@types/minimatch": "2.0.29",
     "@types/minimist": "1.2.0",
-    "@types/mkdirp": "0.3.29",
-    "@types/node": "8.0.11",
+    "@types/mkdirp": "0.5.0",
+    "@types/node": "8.0.17",
     "@types/rimraf": "0.0.28",
     "@types/tmp": "0.0.33",
-    "clean-scripts": "1.0.0",
-    "jasmine": "2.6.0",
+    "clean-scripts": "1.0.1",
+    "jasmine": "2.7.0",
     "standard": "10.0.2",
     "tslint": "5.5.0",
-    "typescript": "2.4.0"
+    "typescript": "2.4.2"
   },
   "bin": {
     "clean-release": "bin/clean-release"
   },
   "dependencies": {
-    "cpy": "5.0.0",
+    "cpy": "5.1.0",
     "glob": "7.1.2",
     "lodash.flatten": "4.4.0",
     "lodash.uniq": "4.5.0",
