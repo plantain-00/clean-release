@@ -87,8 +87,9 @@ async function executeCommandLine() {
 
             const fileOrDirectories = fs.readdirSync(result.name);
             for (const fileOrDirectory of fileOrDirectories) {
-                if (!fs.statSync(fileOrDirectory).isDirectory() || fileOrDirectory !== ".git") {
-                    rimraf.sync(path.resolve(result.name, fileOrDirectory));
+                const fullpath = path.resolve(result.name, fileOrDirectory);
+                if (!fs.statSync(fullpath).isDirectory() || fileOrDirectory !== ".git") {
+                    rimraf.sync(fullpath);
                 }
             }
         }
