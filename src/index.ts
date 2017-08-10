@@ -48,12 +48,15 @@ function mkdirpAsync(dir: string) {
 function exec(command: string) {
     return new Promise<void>((resolve, reject) => {
         printInConsole(`${command}...`);
-        childProcess.exec(command, (error, stdout, stderr) => {
+        const subProcess = childProcess.exec(command, (error, stdout, stderr) => {
             if (error) {
                 reject(error);
             } else {
                 resolve();
             }
+        });
+        subProcess.stdout.on("data", chunk => {
+            printInConsole(chunk);
         });
     });
 }
