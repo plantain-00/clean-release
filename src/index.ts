@@ -1,6 +1,6 @@
 import * as tmp from "tmp";
-import * as flatten from "lodash.flatten";
-import * as uniq from "lodash.uniq";
+import flatten = require("lodash.flatten");
+import uniq = require("lodash.uniq");
 import * as minimist from "minimist";
 import * as path from "path";
 import * as glob from "glob";
