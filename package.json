@@ -30,7 +30,7 @@
     "@types/node": "8.0.17",
     "@types/rimraf": "0.0.28",
     "@types/tmp": "0.0.33",
-    "clean-scripts": "1.2.1",
+    "clean-scripts": "1.2.3",
     "jasmine": "2.7.0",
     "no-unused-export": "1.1.0",
     "standard": "10.0.2",
