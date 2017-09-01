@@ -21,20 +21,20 @@
   },
   "homepage": "https://github.com/plantain-00/clean-release#readme",
   "devDependencies": {
-    "@types/cpy": "5.0.1",
-    "@types/glob": "5.0.30",
-    "@types/jasmine": "2.5.53",
-    "@types/minimatch": "2.0.29",
+    "@types/cpy": "5.1.0",
+    "@types/glob": "5.0.32",
+    "@types/jasmine": "2.5.54",
+    "@types/minimatch": "3.0.1",
     "@types/minimist": "1.2.0",
-    "@types/mkdirp": "0.5.0",
-    "@types/node": "8.0.17",
-    "@types/rimraf": "0.0.28",
+    "@types/mkdirp": "0.5.1",
+    "@types/node": "8.0.26",
+    "@types/rimraf": "2.0.2",
     "@types/tmp": "0.0.33",
-    "clean-scripts": "1.2.3",
-    "jasmine": "2.7.0",
-    "no-unused-export": "1.1.0",
-    "standard": "10.0.2",
-    "tslint": "5.5.0",
+    "clean-scripts": "1.2.4",
+    "jasmine": "2.8.0",
+    "no-unused-export": "1.2.3",
+    "standard": "10.0.3",
+    "tslint": "5.7.0",
     "typescript": "2.4.2"
   },
   "bin": {
@@ -49,6 +49,6 @@
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
     "rimraf": "2.6.1",
-    "tmp": "0.0.31"
+    "tmp": "0.0.33"
   }
 }
