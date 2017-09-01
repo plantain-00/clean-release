@@ -32,10 +32,10 @@
     "@types/tmp": "0.0.33",
     "clean-scripts": "1.2.4",
     "jasmine": "2.8.0",
-    "no-unused-export": "1.2.3",
+    "no-unused-export": "1.2.4",
     "standard": "10.0.3",
     "tslint": "5.7.0",
-    "typescript": "2.4.2"
+    "typescript": "2.5.2"
   },
   "bin": {
     "clean-release": "bin/clean-release"
