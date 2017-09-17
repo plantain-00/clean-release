@@ -23,7 +23,7 @@
   "devDependencies": {
     "@types/cpy": "5.1.0",
     "@types/glob": "5.0.32",
-    "@types/jasmine": "2.5.54",
+    "@types/jasmine": "2.6.0",
     "@types/minimatch": "3.0.1",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.1",
@@ -48,7 +48,7 @@
     "minimatch": "3.0.4",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
-    "rimraf": "2.6.1",
+    "rimraf": "2.6.2",
     "tmp": "0.0.33"
   }
 }
