@@ -1,10 +1,7 @@
 import * as tmp from "tmp";
-import flatten = require("lodash.flatten");
-import uniq = require("lodash.uniq");
 import * as minimist from "minimist";
 import * as path from "path";
 import * as glob from "glob";
-import * as minimatch from "minimatch";
 import * as fs from "fs";
 import cpy = require("cpy");
 import * as mkdirp from "mkdirp";
@@ -21,9 +18,9 @@ function printInConsole(message: any) {
     console.log(message);
 }
 
-function globAsync(pattern: string) {
+function globAsync(pattern: string, ignore?: string | string[]) {
     return new Promise<string[]>((resolve, reject) => {
-        glob(pattern, (error, matches) => {
+        glob(pattern, { ignore }, (error, matches) => {
             if (error) {
                 reject(error);
             } else {
@@ -96,11 +93,10 @@ async function executeCommandLine() {
             }
         }
 
-        const files = await Promise.all(configData.include.map(file => globAsync(file)));
-        let uniqFiles = uniq(flatten(files));
-        if (configData.exclude) {
-            uniqFiles = uniqFiles.filter(file => configData.exclude && configData.exclude.every(excludeFile => !minimatch(file, excludeFile)));
+        if (!configData.include || configData.include.length === 0) {
+            throw new Error("Expect at least one pattern.");
         }
+        const uniqFiles = await globAsync(configData.include.length === 1 ? configData.include[0] : `{${configData.include.join(",")}}`, configData.exclude);
 
         for (const file of uniqFiles) {
             if (!fs.existsSync(file)) {
