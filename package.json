@@ -26,12 +26,12 @@
     "@types/jasmine": "2.6.0",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.1",
-    "@types/node": "8.0.28",
+    "@types/node": "8.0.30",
     "@types/rimraf": "2.0.2",
     "@types/tmp": "0.0.33",
     "clean-scripts": "1.2.6",
     "jasmine": "2.8.0",
-    "no-unused-export": "1.2.6",
+    "no-unused-export": "1.2.7",
     "standard": "10.0.3",
     "tslint": "5.7.0",
     "typescript": "2.5.2"
@@ -40,7 +40,7 @@
     "clean-release": "bin/clean-release"
   },
   "dependencies": {
-    "cpy": "5.1.0",
+    "cpy": "6.0.0",
     "glob": "7.1.2",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",

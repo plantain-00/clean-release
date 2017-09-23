@@ -42,9 +42,9 @@
   version "8.0.27"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.27.tgz#13fbe7e92afeecebb843d7cea6c15b521e0000e1"
 
-"@types/node@8.0.28":
-  version "8.0.28"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.28.tgz#86206716f8d9251cf41692e384264cbd7058ad60"
+"@types/node@8.0.30":
+  version "8.0.30"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.30.tgz#aa3c42946fc6357737eb215349fe728b38679d05"
 
 "@types/node@^6.0.46":
   version "6.0.88"
@@ -253,22 +253,22 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-cp-file@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/cp-file/-/cp-file-4.2.0.tgz#715361663b71ede0b6dddbc3c80e2ba02e725ec3"
+cp-file@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/cp-file/-/cp-file-5.0.0.tgz#bc700fd30ca32d24d46c7fb02b992e435fc5a978"
   dependencies:
     graceful-fs "^4.1.2"
     make-dir "^1.0.0"
     nested-error-stacks "^2.0.0"
-    pify "^2.3.0"
+    pify "^3.0.0"
     safe-buffer "^5.0.1"
 
-cpy@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/cpy/-/cpy-5.1.0.tgz#248982bf209b0a4507830e72a45d284d4583a16a"
+cpy@6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/cpy/-/cpy-6.0.0.tgz#0b6888e037bb5a7b02a62249551316208a523253"
   dependencies:
     arrify "^1.0.1"
-    cp-file "^4.2.0"
+    cp-file "^5.0.0"
     globby "^6.0.0"
     nested-error-stacks "^2.0.0"
 
@@ -900,14 +900,6 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
-lodash.flatten@4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.flatten/-/lodash.flatten-4.4.0.tgz#f31c22225a9632d2bbf8e4addbef240aa765a61f"
-
-lodash.uniq@4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
-
 lodash@^4.0.0, lodash@^4.3.0:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -918,7 +910,7 @@ make-dir@^1.0.0:
   dependencies:
     pify "^2.3.0"
 
-minimatch@3.0.4, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
+minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
@@ -956,14 +948,11 @@ nested-error-stacks@^2.0.0:
   dependencies:
     inherits "~2.0.1"
 
-no-unused-export@1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/no-unused-export/-/no-unused-export-1.2.6.tgz#9aa5a88c51a718dc4640adf5de295211e6b35e01"
+no-unused-export@1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/no-unused-export/-/no-unused-export-1.2.7.tgz#1fd59afce2093f2a5cac5c07458e5fa446a20110"
   dependencies:
     glob "7.1.2"
-    lodash.flatten "4.4.0"
-    lodash.uniq "4.5.0"
-    minimatch "3.0.4"
     minimist "1.2.0"
     parse5 "3.0.2"
     postcss-less "1.1.0"
@@ -1070,6 +1059,10 @@ path-parse@^1.0.5:
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
+
+pify@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
