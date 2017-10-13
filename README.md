@@ -52,3 +52,25 @@ module.exports = {
   ]
 }
 ```
+
+#### docker demo
+
+```js
+module.exports = {
+  include: [
+    'dist/*.js',
+    'static/protocol.proto',
+    'static/scripts/*.bundle-*.js',
+    'static/index.html',
+    'LICENSE',
+    'package.json',
+    'README.md',
+    'Dockerfile'
+  ],
+  exclude: [
+  ],
+  postScript: [
+    'cd [dir] && docker build -t plantain/baogame . && docker push plantain/baogame'
+  ]
+}
+```
