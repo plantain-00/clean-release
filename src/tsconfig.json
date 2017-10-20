@@ -8,6 +8,7 @@
         "noUnusedLocals": true,
         "noImplicitReturns": true,
         "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "newLine": "LF"
     }
 }
