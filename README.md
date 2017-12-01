@@ -109,3 +109,13 @@ module.exports = {
   ]
 }
 ```
+
+#### change logs
+
+```bash
+# v2
+cd "[dir]"
+
+# v1
+cd [dir]
+```
