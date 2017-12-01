@@ -195,7 +195,7 @@ async function executeCommandLine() {
 }
 
 function fillScript(script: string, dir: string, version: string) {
-    return script.split("[dir]").join(`"${dir}"`).split("[version]").join(`"${version}"`);
+    return script.split("[dir]").join(dir).split("[version]").join(version);
 }
 
 executeCommandLine().catch(error => {

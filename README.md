@@ -23,7 +23,7 @@ key | type | description
 include | string[] | the files included, support glob
 exclude | string[]? | the files excluded, support glob
 base | string? | the base path, eg: `dist`, then `dist/foo/bar.js` will be copied into `foo` as `foo/bar.js`
-postScript | string? or string[] | used to publish to npm, eg: `npm publish [dir] --access public`
+postScript | string? or string[] | used to publish to npm, eg: `npm publish "[dir]" --access public`
 releaseRepository | string? | used to publish to a git release repository, eg: `https://github.com/plantain-00/baogame-release.git`
 releaseBranchName | string? | the branch name of the release repository
 notClean | boolean? | if true, do not clean the tmp directory
@@ -32,6 +32,8 @@ askVersion | boolean? | if exists, will ask promp version
 #### npm package demo
 
 ```js
+const { name, devDependencies: { electron: electronVersion } } = require('./package.json')
+
 module.exports = {
   include: [
     'bin/*',
@@ -42,13 +44,21 @@ module.exports = {
   ],
   exclude: [
   ],
+  askVersion: true,
   postScript: [
-    'npm publish [dir] --access public',
     'git add package.json',
     'git commit -m "feat: publish v[version]"',
     'git tag v[version]',
     'git push',
-    'git push origin v[version]'
+    'git push origin v[version]',
+    'cd "[dir]" && npm i --production',
+    'prune-node-modules "[dir]/node_modules"',
+    `electron-packager "[dir]" "${name}" --out=dist --arch=x64 --electron-version=${electronVersion} --platform=darwin --ignore="dist/"`,
+    `electron-packager "[dir]" "${name}" --out=dist --arch=x64 --electron-version=${electronVersion} --platform=win32 --ignore="dist/"`,
+    `7z a -r -tzip dist/${name}-darwin-x64-[version].zip dist/${name}-darwin-x64/`,
+    `7z a -r -tzip dist/${name}-win32-x64-$[version].zip dist/${name}-win32-x64/`,
+    `electron-installer-windows --src dist/${name}-win32-x64/ --dest dist/`,
+    `cd dist && create-dmg ${name}-darwin-x64/${name}.app`
   ]
 }
 ```
@@ -71,9 +81,9 @@ module.exports = {
   exclude: [
   ],
   postScript: [
-    'cd [dir] && npm i --production',
-    'electron-packager [dir] "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=darwin --ignore="dist/"',
-    'electron-packager [dir] "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=win32 --ignore="dist/"'
+    'cd "[dir]" && npm i --production',
+    'electron-packager "[dir]" "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=darwin --ignore="dist/"',
+    'electron-packager "[dir]" "news" --out=dist --arch=x64 --version=1.2.1 --app-version="1.0.8" --platform=win32 --ignore="dist/"'
   ]
 }
 ```
@@ -95,7 +105,7 @@ module.exports = {
   exclude: [
   ],
   postScript: [
-    'cd [dir] && docker build -t plantain/baogame . && docker push plantain/baogame'
+    'cd "[dir]" && docker build -t plantain/baogame . && docker push plantain/baogame'
   ]
 }
 ```
