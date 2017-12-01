@@ -7,6 +7,8 @@ import cpy = require("cpy");
 import * as mkdirp from "mkdirp";
 import * as childProcess from "child_process";
 import * as rimraf from "rimraf";
+import * as inquirer from "inquirer";
+import * as semver from "semver";
 import * as packageJson from "../package.json";
 
 function showToolVersion() {
@@ -42,6 +44,18 @@ function mkdirpAsync(dir: string) {
     });
 }
 
+function writeFile(filename: string, data: string) {
+    return new Promise<void>((resolve, reject) => {
+        fs.writeFile(filename, data, error => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
 function exec(command: string) {
     return new Promise<void>((resolve, reject) => {
         printInConsole(`${command}...`);
@@ -70,9 +84,48 @@ async function executeCommandLine() {
     if (!config) {
         config = "clean-release.config.js";
     }
-    const configPath = path.resolve(process.cwd(), config);
 
-    const configData: ConfigData = require(configPath);
+    const configData: ConfigData = require(path.resolve(process.cwd(), config));
+    const packageJsonPath = path.resolve(process.cwd(), "package.json");
+    const packageJsonData: { version: string } = require(packageJsonPath);
+
+    if (configData.askVersion) {
+        const patchVersion = semver.inc(packageJsonData.version, "patch")!;
+        const minorVersion = semver.inc(packageJsonData.version, "minor")!;
+        const majorVersion = semver.inc(packageJsonData.version, "major")!;
+        const customVersionChoice = "Custom";
+        let newVersionAnswer = await inquirer.prompt({
+            type: "list",
+            name: "newVersion",
+            message: "Select a new version:",
+            choices: [
+                {
+                    name: `Patch ${packageJsonData.version} -> ${patchVersion}`,
+                    value: patchVersion,
+                },
+                {
+                    name: `Minor ${packageJsonData.version} -> ${minorVersion}`,
+                    value: minorVersion,
+                },
+                {
+                    name: `Major ${packageJsonData.version} -> ${majorVersion}`,
+                    value: majorVersion,
+                },
+                customVersionChoice,
+            ],
+        });
+        if (newVersionAnswer.newVersion === customVersionChoice) {
+            newVersionAnswer = await inquirer.prompt({
+                type: "input",
+                name: "newVersion",
+                message: "Enter a custom version:",
+                filter: (input: string) => semver.valid(input)!,
+                validate: input => input !== null || "Must be a valid semver version",
+            });
+        }
+        packageJsonData.version = newVersionAnswer.newVersion;
+        await writeFile(packageJsonPath, JSON.stringify(packageJsonData, null, 2) + "\n");
+    }
 
     const result = tmp.dirSync();
     printInConsole(`Tmp Dir: ${result.name}`);
@@ -123,10 +176,10 @@ async function executeCommandLine() {
         if (configData.postScript) {
             if (Array.isArray(configData.postScript)) {
                 for (const postScript of configData.postScript) {
-                    await exec(postScript.split("[dir]").join(`"${result.name}"`));
+                    await exec(fillScript(postScript, result.name, packageJsonData.version));
                 }
             } else {
-                await exec(configData.postScript.split("[dir]").join(`"${result.name}"`));
+                await exec(fillScript(configData.postScript, result.name, packageJsonData.version));
             }
         }
 
@@ -139,6 +192,10 @@ async function executeCommandLine() {
         }
         throw error;
     }
+}
+
+function fillScript(script: string, dir: string, version: string) {
+    return script.split("[dir]").join(`"${dir}"`).split("[version]").join(`"${version}"`);
 }
 
 executeCommandLine().catch(error => {
@@ -154,4 +211,5 @@ type ConfigData = {
     releaseRepository?: string;
     releaseBranchName?: string;
     notClean?: boolean;
+    askVersion?: boolean;
 };

@@ -25,11 +25,13 @@
     "@commitlint/config-angular": "5.0.1",
     "@types/cpy": "5.1.0",
     "@types/glob": "5.0.33",
+    "@types/inquirer": "0.0.35",
     "@types/jasmine": "2.8.2",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.1",
     "@types/node": "8.0.53",
     "@types/rimraf": "2.0.2",
+    "@types/semver": "5.4.0",
     "@types/tmp": "0.0.33",
     "clean-scripts": "1.7.0",
     "jasmine": "2.8.0",
@@ -44,9 +46,11 @@
   "dependencies": {
     "cpy": "6.0.0",
     "glob": "7.1.2",
+    "inquirer": "4.0.1",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
     "rimraf": "2.6.2",
+    "semver": "5.4.1",
     "tmp": "0.0.33"
   }
 }

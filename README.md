@@ -26,7 +26,30 @@ base | string? | the base path, eg: `dist`, then `dist/foo/bar.js` will be copie
 postScript | string? or string[] | used to publish to npm, eg: `npm publish [dir] --access public`
 releaseRepository | string? | used to publish to a git release repository, eg: `https://github.com/plantain-00/baogame-release.git`
 releaseBranchName | string? | the branch name of the release repository
-notClean | string? | if true, do not clean the tmp directory
+notClean | boolean? | if true, do not clean the tmp directory
+askVersion | boolean? | if exists, will ask promp version
+
+#### npm package demo
+
+```js
+module.exports = {
+  include: [
+    'bin/*',
+    'dist/**/*',
+    'LICENSE',
+    'package.json',
+    'README.md'
+  ],
+  exclude: [
+  ],
+  postScript: [
+    'npm publish [dir] --access public',
+    'git commit -m "feat: publish [version]"',
+    'git tag v[version]',
+    'git push'
+  ]
+}
+```
 
 #### electronjs packaging demo
 

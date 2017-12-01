@@ -8,5 +8,11 @@ module.exports = {
   ],
   exclude: [
   ],
-  postScript: 'npm publish [dir] --access public'
+  askVersion: true,
+  postScript: [
+    'npm publish [dir] --access public',
+    'git commit -m "feat: publish [version]"',
+    'git tag v[version]',
+    'git push'
+  ]
 }
