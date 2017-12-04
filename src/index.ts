@@ -33,7 +33,7 @@ function globAsync(pattern: string, ignore?: string | string[]) {
 }
 
 function mkdirpAsync(dir: string) {
-    return new Promise<string>((resolve, reject) => {
+    return new Promise<mkdirp.Made>((resolve, reject) => {
         mkdirp(dir, (error, made) => {
             if (error) {
                 reject(error);
