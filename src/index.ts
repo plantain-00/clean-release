@@ -12,12 +12,7 @@ import * as semver from "semver";
 import * as packageJson from "../package.json";
 
 function showToolVersion() {
-    printInConsole(`Version: ${packageJson.version}`);
-}
-
-function printInConsole(message: any) {
-    // tslint:disable-next-line:no-console
-    console.log(message);
+    console.log(`Version: ${packageJson.version}`);
 }
 
 function globAsync(pattern: string, ignore?: string | string[]) {
@@ -58,7 +53,7 @@ function writeFile(filename: string, data: string) {
 
 function exec(command: string) {
     return new Promise<void>((resolve, reject) => {
-        printInConsole(`${command}...`);
+        console.log(`${command}...`);
         const subProcess = childProcess.exec(command, (error, stdout, stderr) => {
             if (error) {
                 reject(error);
@@ -128,7 +123,7 @@ async function executeCommandLine() {
     }
 
     const result = tmp.dirSync();
-    printInConsole(`Tmp Dir: ${result.name}`);
+    console.log(`Tmp Dir: ${result.name}`);
     try {
         if (configData.releaseRepository) {
             if (configData.releaseBranchName) {
@@ -165,7 +160,7 @@ async function executeCommandLine() {
                 await mkdirpAsync(directoryPath);
 
                 await cpy(file, directoryPath);
-                printInConsole(`Copied: ${file} To:  ${relativePath}`);
+                console.log(`Copied: ${file} To:  ${relativePath}`);
             }
         }
 
@@ -199,7 +194,11 @@ function fillScript(script: string, dir: string, version: string) {
 }
 
 executeCommandLine().catch(error => {
-    printInConsole(error);
+    if (error instanceof Error) {
+        console.log(error.message);
+    } else {
+        console.log(error);
+    }
     process.exit(1);
 });
 
