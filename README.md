@@ -27,7 +27,8 @@ postScript | string? or string[] | used to publish to npm, eg: `npm publish "[di
 releaseRepository | string? | used to publish to a git release repository, eg: `https://github.com/plantain-00/baogame-release.git`
 releaseBranchName | string? | the branch name of the release repository
 notClean | boolean? | if true, do not clean the tmp directory
-askVersion | boolean? | if exists, will ask promp version
+askVersion | boolean? | if true, will ask promp version
+changesGitStaged | boolean? | if true, will make sure all changes is git staged
 
 #### npm package demo
 
@@ -45,6 +46,7 @@ module.exports = {
   exclude: [
   ],
   askVersion: true,
+  changesGitStaged: true,
   postScript: [
     'git add package.json',
     'git commit -m "feat: publish v[version]"',

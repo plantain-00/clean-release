@@ -52,13 +52,13 @@ function writeFile(filename: string, data: string) {
 }
 
 function exec(command: string) {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<string>((resolve, reject) => {
         console.log(`${command}...`);
         const subProcess = childProcess.exec(command, (error, stdout, stderr) => {
             if (error) {
                 reject(error);
             } else {
-                resolve();
+                resolve(stdout);
             }
         });
         subProcess.stdout.pipe(process.stdout);
@@ -83,6 +83,13 @@ async function executeCommandLine() {
     const configData: ConfigData = require(path.resolve(process.cwd(), config));
     const packageJsonPath = path.resolve(process.cwd(), "package.json");
     const packageJsonData: { version: string } = require(packageJsonPath);
+
+    if (configData.changesGitStaged) {
+        const status = (await exec(`git status -s`)).trim();
+        if (status && status.split("\n").some(s => !s.startsWith("A ") && !s.startsWith("M "))) {
+            throw new Error("There are changes not staged for commit.");
+        }
+    }
 
     if (configData.askVersion) {
         const patchVersion = semver.inc(packageJsonData.version, "patch")!;
@@ -211,4 +218,5 @@ type ConfigData = {
     releaseBranchName?: string;
     notClean?: boolean;
     askVersion?: boolean;
+    changesGitStaged?: boolean;
 };
