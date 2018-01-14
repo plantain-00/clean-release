@@ -22,7 +22,7 @@
   "homepage": "https://github.com/plantain-00/clean-release#readme",
   "devDependencies": {
     "@commitlint/cli": "5.2.8",
-    "@commitlint/config-angular": "5.1.1",
+    "@commitlint/config-conventional": "6.0.2",
     "@types/cpy": "5.1.0",
     "@types/glob": "5.0.34",
     "@types/inquirer": "0.0.36",
