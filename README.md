@@ -11,7 +11,7 @@ A CLI tool to copy files to be released into a tmp clean directory for npm publi
 
 ## install
 
-`npm i clean-release -g`
+`yarn global add clean-release`
 
 ## usage
 
