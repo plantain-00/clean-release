@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/plantain-00/clean-release#readme",
   "devDependencies": {
-    "@commitlint/cli": "6.0.2",
-    "@commitlint/config-conventional": "6.0.2",
+    "@commitlint/cli": "6.1.0",
+    "@commitlint/config-conventional": "6.1.0",
     "@types/cpy": "5.1.0",
     "@types/glob": "5.0.35",
     "@types/inquirer": "0.0.36",
@@ -31,16 +31,16 @@
     "@types/mkdirp": "0.5.2",
     "@types/node": "9.4.0",
     "@types/rimraf": "2.0.2",
-    "@types/semver": "5.4.0",
+    "@types/semver": "5.5.0",
     "@types/tmp": "0.0.33",
     "clean-scripts": "1.7.0",
     "jasmine": "2.9.0",
-    "markdownlint-cli": "0.6.0",
+    "markdownlint-cli": "0.7.0",
     "no-unused-export": "1.4.5",
     "standard": "10.0.3",
     "tslint": "5.9.1",
     "tslint-config-standard": "7.0.0",
-    "typescript": "2.6.2"
+    "typescript": "2.7.1"
   },
   "bin": {
     "clean-release": "bin/clean-release"
