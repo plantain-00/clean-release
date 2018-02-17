@@ -29,7 +29,7 @@
     "@types/jasmine": "2.8.6",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/node": "9.4.5",
+    "@types/node": "9.4.6",
     "@types/rimraf": "2.0.2",
     "@types/semver": "5.5.0",
     "@types/tmp": "0.0.33",
@@ -40,7 +40,7 @@
     "standard": "10.0.3",
     "tslint": "5.9.1",
     "tslint-config-standard": "7.0.0",
-    "typescript": "2.7.1"
+    "typescript": "2.7.2"
   },
   "bin": {
     "clean-release": "bin/clean-release"
