@@ -92,7 +92,7 @@ async function executeCommandLine () {
   }
 
   if (configData.askVersion) {
-    let newVersionAnswer = await inquirer.prompt({
+    let identifierAnswer = await inquirer.prompt<{ identifier: string }>({
       type: 'list',
       name: 'identifier',
       message: 'Select a new identifier:',
@@ -103,7 +103,7 @@ async function executeCommandLine () {
         'rc'
       ]
     })
-    const identifier = newVersionAnswer.identifier
+    const identifier = identifierAnswer.identifier
 
     const patchVersion = semver.inc(packageJsonData.version, 'patch')!
     const minorVersion = semver.inc(packageJsonData.version, 'minor')!
@@ -113,7 +113,7 @@ async function executeCommandLine () {
     const premajorVersion = semver.inc(packageJsonData.version, 'premajor', true, identifier)!
     const prereleaseVersion = semver.inc(packageJsonData.version, 'prerelease', true, identifier)!
     const customVersionChoice = 'Custom'
-    newVersionAnswer = await inquirer.prompt({
+    let newVersionAnswer = await inquirer.prompt<{ newVersion: string }>({
       type: 'list',
       name: 'newVersion',
       message: 'Select a new version:',
@@ -150,7 +150,7 @@ async function executeCommandLine () {
       ]
     })
     if (newVersionAnswer.newVersion === customVersionChoice) {
-      newVersionAnswer = await inquirer.prompt({
+      newVersionAnswer = await inquirer.prompt<{ newVersion: string }>({
         type: 'input',
         name: 'newVersion',
         message: 'Enter a custom version:',
