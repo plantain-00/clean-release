@@ -79,7 +79,7 @@ async function executeCommandLine () {
   }
 
   if (configData.askVersion) {
-    await askVersion()
+    packageJsonData.version = await askVersion()
   }
 
   const result = tmp.dirSync()
@@ -125,7 +125,7 @@ async function executeCommandLine () {
     }
 
     if (configData.releaseRepository) {
-      await exec(`cd ${result.name} && git add -A --force && git commit -m "new release" && git push`)
+      await exec(`cd ${result.name} && git add -A --force && git commit -m "${packageJsonData.version}" && git tag v${packageJsonData.version} && git push`)
     }
 
     if (configData.postScript) {
