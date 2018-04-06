@@ -27,7 +27,7 @@
     "@types/jasmine": "2.8.6",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/node": "9.6.1",
+    "@types/node": "9.6.2",
     "@types/rimraf": "2.0.2",
     "@types/tmp": "0.0.33",
     "clean-scripts": "1.7.0",
