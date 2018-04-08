@@ -38,10 +38,10 @@ function mkdirpAsync (dir: string) {
   })
 }
 
-function exec (command: string) {
+function exec (command: string, options: childProcess.ExecOptions | undefined) {
   return new Promise<string>((resolve, reject) => {
     console.log(`${command}...`)
-    const subProcess = childProcess.exec(command, (error, stdout, stderr) => {
+    const subProcess = childProcess.exec(command, options || {}, (error, stdout, stderr) => {
       if (error) {
         reject(error)
       } else {
@@ -72,7 +72,7 @@ async function executeCommandLine () {
   const packageJsonData: { version: string } = require(packageJsonPath)
 
   if (configData.changesGitStaged) {
-    const status = (await exec(`git status -s`)).trim()
+    const status = (await exec(`git status -s`, configData.execOptions)).trim()
     if (status && status.split('\n').some(s => !s.startsWith('A ') && !s.startsWith('M '))) {
       throw new Error('There are changes not staged for commit.')
     }
@@ -87,9 +87,9 @@ async function executeCommandLine () {
   try {
     if (configData.releaseRepository) {
       if (configData.releaseBranchName) {
-        await exec(`git clone -b ${configData.releaseBranchName} ${configData.releaseRepository} "${result.name}" --depth=1`)
+        await exec(`git clone -b ${configData.releaseBranchName} ${configData.releaseRepository} "${result.name}" --depth=1`, configData.execOptions)
       } else {
-        await exec(`git clone ${configData.releaseRepository} "${result.name}" --depth=1`)
+        await exec(`git clone ${configData.releaseRepository} "${result.name}" --depth=1`, configData.execOptions)
       }
 
       const fileOrDirectories = fs.readdirSync(result.name)
@@ -125,16 +125,16 @@ async function executeCommandLine () {
     }
 
     if (configData.releaseRepository) {
-      await exec(`cd ${result.name} && git add -A --force && git commit -m "${packageJsonData.version}" && git tag v${packageJsonData.version} && git push && git push origin v${packageJsonData.version}`)
+      await exec(`cd ${result.name} && git add -A --force && git commit -m "${packageJsonData.version}" && git tag v${packageJsonData.version} && git push && git push origin v${packageJsonData.version}`, configData.execOptions)
     }
 
     if (configData.postScript) {
       if (Array.isArray(configData.postScript)) {
         for (const postScript of configData.postScript) {
-          await exec(fillScript(postScript, result.name, packageJsonData.version))
+          await exec(fillScript(postScript, result.name, packageJsonData.version), configData.execOptions)
         }
       } else {
-        await exec(fillScript(configData.postScript, result.name, packageJsonData.version))
+        await exec(fillScript(configData.postScript, result.name, packageJsonData.version), configData.execOptions)
       }
     }
 
@@ -172,4 +172,5 @@ type ConfigData = {
   notClean?: boolean;
   askVersion?: boolean;
   changesGitStaged?: boolean;
+  execOptions?: childProcess.ExecOptions;
 }

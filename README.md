@@ -30,6 +30,7 @@ releaseBranchName | string? | the branch name of the release repository
 notClean | boolean? | if true, do not clean the tmp directory
 askVersion | boolean? | if true, will ask promp version
 changesGitStaged | boolean? | if true, will make sure all changes is git staged
+execOptions | childProcess.ExecOptions? | passed to `childProcess.exec`
 
 ## npm package demo
 
