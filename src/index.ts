@@ -62,10 +62,7 @@ async function executeCommandLine () {
     return
   }
 
-  let config: string | undefined = argv.config
-  if (!config) {
-    config = 'clean-release.config.js'
-  }
+  const config = argv.config || 'clean-release.config.js'
 
   const configData: ConfigData = require(path.resolve(process.cwd(), config))
   const packageJsonPath = path.resolve(process.cwd(), 'package.json')
