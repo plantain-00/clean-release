@@ -128,10 +128,26 @@ async function executeCommandLine () {
     if (configData.postScript) {
       if (Array.isArray(configData.postScript)) {
         for (const postScript of configData.postScript) {
-          await exec(fillScript(postScript, result.name, packageJsonData.version), configData.execOptions)
+          if (typeof postScript === 'string') {
+            await exec(fillScript(postScript, result.name, packageJsonData.version), configData.execOptions)
+          } else {
+            const script = await postScript({
+              dir: result.name,
+              version: packageJsonData.version
+            })
+            await exec(script, configData.execOptions)
+          }
         }
       } else {
-        await exec(fillScript(configData.postScript, result.name, packageJsonData.version), configData.execOptions)
+        if (typeof configData.postScript === 'string') {
+          await exec(fillScript(configData.postScript, result.name, packageJsonData.version), configData.execOptions)
+        } else {
+          const script = await configData.postScript({
+            dir: result.name,
+            version: packageJsonData.version
+          })
+          await exec(script, configData.execOptions)
+        }
       }
     }
 
@@ -159,11 +175,18 @@ executeCommandLine().catch(error => {
   process.exit(1)
 })
 
+type Context = {
+  dir: string
+  version: string
+}
+
+type Script = string | ((context: Context) => string) | ((context: Context) => Promise<string>)
+
 type ConfigData = {
   include: string[];
   exclude?: string[];
   base?: string;
-  postScript?: string | string[];
+  postScript?: Script | Script[];
   releaseRepository?: string;
   releaseBranchName?: string;
   notClean?: boolean;
