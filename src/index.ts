@@ -10,11 +10,11 @@ import * as rimraf from 'rimraf'
 import { askVersion } from 'npm-version-cli'
 import * as packageJson from '../package.json'
 
-function showToolVersion () {
+function showToolVersion() {
   console.log(`Version: ${packageJson.version}`)
 }
 
-function globAsync (pattern: string, ignore?: string | string[]) {
+function globAsync(pattern: string, ignore?: string | string[]) {
   return new Promise<string[]>((resolve, reject) => {
     glob(pattern, { ignore }, (error, matches) => {
       if (error) {
@@ -26,7 +26,7 @@ function globAsync (pattern: string, ignore?: string | string[]) {
   })
 }
 
-function mkdirpAsync (dir: string) {
+function mkdirpAsync(dir: string) {
   return new Promise<mkdirp.Made>((resolve, reject) => {
     mkdirp(dir, (error, made) => {
       if (error) {
@@ -38,7 +38,7 @@ function mkdirpAsync (dir: string) {
   })
 }
 
-function exec (command: string, options: childProcess.ExecOptions | undefined) {
+function exec(command: string, options: childProcess.ExecOptions | undefined) {
   return new Promise<string>((resolve, reject) => {
     console.log(`${command}...`)
     const subProcess = childProcess.exec(command, options || {}, (error, stdout, stderr) => {
@@ -53,7 +53,8 @@ function exec (command: string, options: childProcess.ExecOptions | undefined) {
   })
 }
 
-async function executeCommandLine () {
+// tslint:disable-next-line:cognitive-complexity
+async function executeCommandLine() {
   const argv = minimist(process.argv.slice(2), { '--': true })
 
   const showVersion = argv.v || argv.version
@@ -162,7 +163,7 @@ async function executeCommandLine () {
   }
 }
 
-function fillScript (script: string, dir: string, version: string) {
+function fillScript(script: string, dir: string, version: string) {
   return script.split('[dir]').join(dir).split('[version]').join(version)
 }
 
