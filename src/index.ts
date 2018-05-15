@@ -195,3 +195,11 @@ type ConfigData = {
   changesGitStaged?: boolean;
   execOptions?: childProcess.ExecOptions;
 }
+
+process.on('SIGINT', () => {
+  process.exit()
+})
+
+process.on('SIGTERM', () => {
+  process.exit()
+})
