@@ -170,10 +170,14 @@ function fillScript(script: string, dir: string, version: string) {
   return script.split('[dir]').join(dir).split('[version]').join(version)
 }
 
-executeCommandLine().then(() => {
+function killChildProcesses() {
   for (const subProcess of subProcesses) {
     subProcess.kill('SIGINT')
   }
+}
+
+executeCommandLine().then(() => {
+  killChildProcesses()
   process.exit()
 },error => {
   if (error instanceof Error) {
@@ -181,9 +185,7 @@ executeCommandLine().then(() => {
   } else {
     console.log(error)
   }
-  for (const subProcess of subProcesses) {
-    subProcess.kill('SIGINT')
-  }
+  killChildProcesses()
   process.exit(1)
 })
 
@@ -208,9 +210,11 @@ type ConfigData = {
 }
 
 process.on('SIGINT', () => {
+  killChildProcesses()
   process.exit()
 })
 
 process.on('SIGTERM', () => {
+  killChildProcesses()
   process.exit()
 })
