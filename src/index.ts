@@ -38,6 +38,8 @@ function mkdirpAsync(dir: string) {
   })
 }
 
+const subProcesses: childProcess.ChildProcess[] = []
+
 function exec(command: string, options: childProcess.ExecOptions | undefined) {
   return new Promise<string>((resolve, reject) => {
     console.log(`${command}...`)
@@ -50,6 +52,7 @@ function exec(command: string, options: childProcess.ExecOptions | undefined) {
     })
     subProcess.stdout.pipe(process.stdout)
     subProcess.stderr.pipe(process.stderr)
+    subProcesses.push(subProcess)
   })
 }
 
@@ -167,11 +170,19 @@ function fillScript(script: string, dir: string, version: string) {
   return script.split('[dir]').join(dir).split('[version]').join(version)
 }
 
-executeCommandLine().catch(error => {
+executeCommandLine().then(() => {
+  for (const subProcess of subProcesses) {
+    subProcess.kill('SIGINT')
+  }
+  process.exit()
+},error => {
   if (error instanceof Error) {
     console.log(error.message)
   } else {
     console.log(error)
+  }
+  for (const subProcess of subProcesses) {
+    subProcess.kill('SIGINT')
   }
   process.exit(1)
 })
