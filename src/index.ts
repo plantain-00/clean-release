@@ -170,14 +170,30 @@ function fillScript(script: string, dir: string, version: string) {
   return script.split('[dir]').join(dir).split('[version]').join(version)
 }
 
-function killChildProcesses() {
+function cleanup() {
+  if (process.platform === 'darwin' || process.platform === 'linux') {
+    const stdout = childProcess.execSync('ps -l').toString()
+    const ps = stdout.split('\n')
+      .map(s => s.split(' ').filter(s => s))
+      .filter((s, i) => i > 0 && s.length >= 2)
+      .map(s => ({ pid: +s[1], ppid: +s[2] }))
+    const result: number[] = []
+    collectPids(process.pid, ps, result)
+    for (const pid of result) {
+      childProcess.execSync(`kill -9 ${pid}`)
+    }
+  }
+
   for (const subProcess of subProcesses) {
     subProcess.kill('SIGINT')
+    if (process.platform === 'win32') {
+      childProcess.execSync(`taskkill -F -T -PID ${subProcess.pid}`)
+    }
   }
 }
 
 executeCommandLine().then(() => {
-  killChildProcesses()
+  cleanup()
   process.exit()
 },error => {
   if (error instanceof Error) {
@@ -185,9 +201,22 @@ executeCommandLine().then(() => {
   } else {
     console.log(error)
   }
-  killChildProcesses()
+  cleanup()
   process.exit(1)
 })
+
+interface Ps {
+  pid: number
+  ppid: number
+}
+
+function collectPids(pid: number, ps: Ps[], result: number[]) {
+  const children = ps.filter(p => p.ppid === pid)
+  for (const child of children) {
+    result.push(child.pid)
+    collectPids(child.pid, ps, result)
+  }
+}
 
 type Context = {
   dir: string
@@ -210,11 +239,11 @@ type ConfigData = {
 }
 
 process.on('SIGINT', () => {
-  killChildProcesses()
+  cleanup()
   process.exit()
 })
 
 process.on('SIGTERM', () => {
-  killChildProcesses()
+  cleanup()
   process.exit()
 })
