@@ -42,6 +42,7 @@ type Script = string | ((context: Context) => string) | ((context: Context) => P
 type Context = {
   dir: string
   version: string
+  tag: string | undefined
 }
 ```
 

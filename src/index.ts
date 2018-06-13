@@ -8,6 +8,7 @@ import mkdirp from 'mkdirp'
 import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
 import { askVersion } from 'npm-version-cli'
+import * as semver from 'semver'
 import * as packageJson from '../package.json'
 
 function showToolVersion() {
@@ -130,6 +131,8 @@ async function executeCommandLine() {
     }
 
     if (configData.postScript) {
+      const versionData = semver.parse(packageJsonData.version)
+      const tag = versionData && versionData.prerelease.length > 0 ? versionData.prerelease[0] : undefined
       if (Array.isArray(configData.postScript)) {
         for (const postScript of configData.postScript) {
           if (typeof postScript === 'string') {
@@ -137,7 +140,8 @@ async function executeCommandLine() {
           } else {
             const script = await postScript({
               dir: result.name,
-              version: packageJsonData.version
+              version: packageJsonData.version,
+              tag
             })
             await exec(script, configData.execOptions)
           }
@@ -148,7 +152,8 @@ async function executeCommandLine() {
         } else {
           const script = await configData.postScript({
             dir: result.name,
-            version: packageJsonData.version
+            version: packageJsonData.version,
+            tag
           })
           await exec(script, configData.execOptions)
         }
@@ -218,6 +223,7 @@ function collectPids(pid: number, ps: Ps[], result: number[]) {
 type Context = {
   dir: string
   version: string
+  tag: string | undefined
 }
 
 type Script = string | ((context: Context) => string) | ((context: Context) => Promise<string>)
