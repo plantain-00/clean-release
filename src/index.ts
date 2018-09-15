@@ -223,7 +223,7 @@ function collectPids(pid: number, ps: Ps[], result: number[]) {
 type Context = {
   dir: string
   version: string
-  tag: string | undefined
+  tag?: string
 }
 
 type Script = string | ((context: Context) => string) | ((context: Context) => Promise<string>)
