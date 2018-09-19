@@ -127,7 +127,7 @@ async function executeCommandLine() {
     }
 
     if (configData.releaseRepository) {
-      await exec(`cd ${result.name} && git add -A --force && git commit -m "${packageJsonData.version}" && git tag v${packageJsonData.version} && git push && git push origin v${packageJsonData.version}`, configData.execOptions)
+      await exec(`cd ${result.name} && git add -A --force && git commit -m "${packageJsonData.version}" && git tag -a v${packageJsonData.version} -m 'v${packageJsonData.version}' && git push && git push origin v${packageJsonData.version}`, configData.execOptions)
     }
 
     if (configData.postScript) {
