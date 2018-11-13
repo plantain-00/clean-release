@@ -6,6 +6,7 @@
 [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/github/plantain-00/clean-release?branch=master&svg=true)](https://ci.appveyor.com/project/plantain-00/clean-release/branch/master)
 [![npm version](https://badge.fury.io/js/clean-release.svg)](https://badge.fury.io/js/clean-release)
 [![Downloads](https://img.shields.io/npm/dm/clean-release.svg)](https://www.npmjs.com/package/clean-release)
+[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fplantain-00%2Fclean-release%2Fmaster%2Fpackage.json)](https://github.com/plantain-00/clean-release)
 
 A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation or deployment
 
