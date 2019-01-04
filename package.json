@@ -54,7 +54,7 @@
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
     "npm-version-cli": "1.1.0",
-    "rimraf": "2.6.2",
+    "rimraf": "2.6.3",
     "tmp": "0.0.33"
   }
 }
