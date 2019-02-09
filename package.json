@@ -30,7 +30,7 @@
     "@types/jasmine": "3.3.8",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/node": "10.12.21",
+    "@types/node": "10.12.24",
     "@types/rimraf": "2.0.2",
     "@types/semver": "5.5.0",
     "@types/tmp": "0.0.33",
