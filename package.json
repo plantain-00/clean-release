@@ -30,7 +30,7 @@
     "@types/jasmine": "3.3.9",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "0.5.2",
-    "@types/node": "11.10.0",
+    "@types/node": "11.10.5",
     "@types/rimraf": "2.0.2",
     "@types/semver": "5.5.0",
     "@types/tmp": "0.0.34",
@@ -49,7 +49,7 @@
     "clean-release": "bin/clean-release"
   },
   "dependencies": {
-    "cpy": "7.0.1",
+    "cpy": "7.1.0",
     "glob": "7.1.3",
     "minimist": "1.2.0",
     "mkdirp": "0.5.1",
