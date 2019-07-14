@@ -44,7 +44,7 @@ const subProcesses: childProcess.ChildProcess[] = []
 function exec(command: string, options: childProcess.ExecOptions | undefined) {
   return new Promise<string>((resolve, reject) => {
     console.log(`${command}...`)
-    const subProcess = childProcess.exec(command, options || {}, (error, stdout, stderr) => {
+    const subProcess = childProcess.exec(command, options || {}, (error, stdout) => {
       if (error) {
         reject(error)
       } else {
@@ -73,8 +73,10 @@ async function executeCommandLine() {
 
   const config = argv.config || 'clean-release.config.js'
 
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const configData: ConfigData = require(path.resolve(process.cwd(), config))
   const packageJsonPath = path.resolve(process.cwd(), 'package.json')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const packageJsonData: { version: string } = require(packageJsonPath)
 
   if (configData.changesGitStaged) {
@@ -224,7 +226,7 @@ function collectPids(pid: number, ps: Ps[], result: number[]) {
   }
 }
 
-type Context = {
+interface Context {
   dir: string
   version: string
   tag?: string | number
@@ -232,7 +234,7 @@ type Context = {
 
 type Script = string | ((context: Context) => string) | ((context: Context) => Promise<string>)
 
-type ConfigData = {
+interface ConfigData {
   include: string[];
   exclude?: string[];
   base?: string;
