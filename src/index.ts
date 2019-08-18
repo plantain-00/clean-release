@@ -61,7 +61,6 @@ function exec(command: string, options: childProcess.ExecOptions | undefined) {
   })
 }
 
-// tslint:disable-next-line:cognitive-complexity
 async function executeCommandLine() {
   const argv = minimist(process.argv.slice(2), { '--': true })
 
