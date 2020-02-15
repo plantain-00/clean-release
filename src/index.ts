@@ -27,18 +27,6 @@ function globAsync(pattern: string, ignore?: string | string[]) {
   })
 }
 
-function mkdirpAsync(dir: string) {
-  return new Promise<mkdirp.Made>((resolve, reject) => {
-    mkdirp(dir, (error, made) => {
-      if (error) {
-        reject(error)
-      } else {
-        resolve(made)
-      }
-    })
-  })
-}
-
 const subProcesses: childProcess.ChildProcess[] = []
 
 function exec(command: string, options: childProcess.ExecOptions | undefined) {
@@ -124,7 +112,7 @@ async function executeCommandLine() {
           relativePath = path.relative(configData.base, relativePath)
         }
         const directoryPath = path.resolve(result.name, relativePath)
-        await mkdirpAsync(directoryPath)
+        await mkdirp(directoryPath)
 
         await cpy(file, directoryPath)
         console.log(`Copied: ${file} To:  ${relativePath}`)
