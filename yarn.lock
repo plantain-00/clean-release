@@ -1999,15 +1999,16 @@ normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
 
-npm-version-cli@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-1.1.1.tgz#f8b82c470fd1f6c2fb7105b0c9bf05fa80279373"
-  integrity sha512-jgPk9inBz7PL9J33ON6qBq+752XWFTwsmSemcfwxphuDFKLNxq3RZxvBjKCug8Y6jNGvsW2qgaaFdoV16kh0RA==
+npm-version-cli@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-1.2.1.tgz#078bc415285c85b3fc0d91e77762701793757d20"
+  integrity sha512-/rvhZX0H2Zc7wbpaylDACmwzhCLJA0Rmsz5dFY8psY9PG5eX5+wvDg3mcfIO4E5SW1JcNjXqvrovGlnEDMTrTQ==
   dependencies:
     inquirer "7"
     minimist "1.2.5"
     semver "7"
     tslib "1"
+    xml-js "1"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
@@ -2499,6 +2500,11 @@ safe-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
+sax@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
+  integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
+
 "semver@2 || 3 || 4 || 5", semver@^5.5.0:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
@@ -2986,6 +2992,13 @@ write@1.0.3:
   integrity sha512-/lg70HAjtkUgWPVZhZcm+T4hkL8Zbtp1nFNOn3lRrxnlv50SRBv7cR7RqR+GMsd3hUXy9hWBo4CHTbFTcOYwig==
   dependencies:
     mkdirp "^0.5.1"
+
+xml-js@1:
+  version "1.6.11"
+  resolved "https://registry.yarnpkg.com/xml-js/-/xml-js-1.6.11.tgz#927d2f6947f7f1c19a316dd8eea3614e8b18f8e9"
+  integrity sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==
+  dependencies:
+    sax "^1.2.4"
 
 xtend@~4.0.1:
   version "4.0.2"
