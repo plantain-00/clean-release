@@ -53,7 +53,7 @@
     "glob": "7.1.6",
     "minimist": "1.2.5",
     "mkdirp": "1.0.4",
-    "npm-version-cli": "1.2.1",
+    "npm-version-cli": "1",
     "rimraf": "3.0.2",
     "tmp": "0.1.0"
   }
