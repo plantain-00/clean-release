@@ -1999,10 +1999,10 @@ normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
     semver "2 || 3 || 4 || 5"
     validate-npm-package-license "^3.0.1"
 
-npm-version-cli@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-1.2.1.tgz#078bc415285c85b3fc0d91e77762701793757d20"
-  integrity sha512-/rvhZX0H2Zc7wbpaylDACmwzhCLJA0Rmsz5dFY8psY9PG5eX5+wvDg3mcfIO4E5SW1JcNjXqvrovGlnEDMTrTQ==
+npm-version-cli@1:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-1.2.2.tgz#7d053ec294f744400c1a17db46625c996de4b0ee"
+  integrity sha512-QpU/BA7rCUJDfojHba8TwNDBBGVO34xsJxV46cYkYyuOdgJ5i8LBTd5fx1Vs0p1D429rw6VzVyJPwIZgark2fg==
   dependencies:
     inquirer "7"
     minimist "1.2.5"
