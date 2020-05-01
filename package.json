@@ -49,12 +49,12 @@
     "clean-release": "bin/clean-release"
   },
   "dependencies": {
-    "cpy": "8.1.0",
-    "glob": "7.1.6",
-    "minimist": "1.2.5",
-    "mkdirp": "1.0.4",
+    "cpy": "8",
+    "glob": "7",
+    "minimist": "1",
+    "mkdirp": "1",
     "npm-version-cli": "1",
-    "rimraf": "3.0.2",
-    "tmp": "0.1.0"
+    "rimraf": "3",
+    "tmp": "0.1"
   }
 }
