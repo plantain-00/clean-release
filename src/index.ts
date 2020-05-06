@@ -128,6 +128,9 @@ async function executeCommandLine() {
       const tag = versionData && versionData.prerelease.length > 0 ? versionData.prerelease[0] : undefined
       if (Array.isArray(configData.postScript)) {
         for (const postScript of configData.postScript) {
+          if (!postScript) {
+            continue
+          }
           if (typeof postScript === 'string') {
             await exec(fillScript(postScript, result.name, packageJsonData.version), configData.execOptions)
           } else {
@@ -136,10 +139,12 @@ async function executeCommandLine() {
               version: packageJsonData.version,
               tag
             })
-            await exec(script, configData.execOptions)
+            if (script) {
+              await exec(script, configData.execOptions)
+            }
           }
         }
-      } else {
+      } else if (configData.postScript) {
         if (typeof configData.postScript === 'string') {
           await exec(fillScript(configData.postScript, result.name, packageJsonData.version), configData.execOptions)
         } else {
@@ -148,7 +153,9 @@ async function executeCommandLine() {
             version: packageJsonData.version,
             tag
           })
-          await exec(script, configData.execOptions)
+          if (script) {
+            await exec(script, configData.execOptions)
+          }
         }
       }
     }
@@ -219,7 +226,7 @@ interface Context {
   tag?: string | number
 }
 
-type Script = string | ((context: Context) => string) | ((context: Context) => Promise<string>)
+type Script = string | ((context: Context) => string | undefined) | ((context: Context) => Promise<string | undefined>) | undefined
 
 interface ConfigData {
   include: string[];
