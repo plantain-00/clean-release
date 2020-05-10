@@ -10,6 +10,7 @@ import * as rimraf from 'rimraf'
 import { askVersion } from 'npm-version-cli'
 import * as semver from 'semver'
 import * as packageJson from '../package.json'
+import { ConfigData } from './core'
 
 function showToolVersion() {
   console.log(`Version: ${packageJson.version}`)
@@ -22,6 +23,18 @@ function globAsync(pattern: string, ignore?: string | string[]) {
         reject(error)
       } else {
         resolve(matches)
+      }
+    })
+  })
+}
+
+function statAsync(file: string) {
+  return new Promise<fs.Stats | undefined>((resolve) => {
+    fs.stat(file, (error, stats) => {
+      if (error) {
+        resolve(undefined)
+      } else {
+        resolve(stats)
       }
     })
   })
@@ -50,7 +63,11 @@ function exec(command: string, options: childProcess.ExecOptions | undefined) {
 }
 
 async function executeCommandLine() {
-  const argv = minimist(process.argv.slice(2), { '--': true })
+  const argv = minimist(process.argv.slice(2), { '--': true }) as {
+    config?: string
+    v?: unknown
+    version?: unknown
+  }
 
   const showVersion = argv.v || argv.version
   if (showVersion) {
@@ -58,10 +75,25 @@ async function executeCommandLine() {
     return
   }
 
-  const config = argv.config || 'clean-release.config.js'
+  let configFilePath: string
+  if (argv.config) {
+    configFilePath = path.resolve(process.cwd(), argv.config)
+  } else {
+    configFilePath = path.resolve(process.cwd(), 'clean-release.config.ts')
+    const stats = await statAsync(configFilePath)
+    if (!stats || !stats.isFile()) {
+      configFilePath = path.resolve(process.cwd(), 'clean-release.config.js')
+    }
+  }
+  if (configFilePath.endsWith('.ts')) {
+    require('ts-node/register/transpile-only')
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  const configData: ConfigData = require(path.resolve(process.cwd(), config))
+  let configData: ConfigData & { default?: ConfigData } = require(configFilePath)
+  if (configData.default) {
+    configData = configData.default;
+  }
   const packageJsonPath = path.resolve(process.cwd(), 'package.json')
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const packageJsonData: { version: string } = require(packageJsonPath)
@@ -218,27 +250,6 @@ function collectPids(pid: number, ps: Ps[], result: number[]) {
     result.push(child.pid)
     collectPids(child.pid, ps, result)
   }
-}
-
-interface Context {
-  dir: string
-  version: string
-  tag?: string | number
-}
-
-type Script = string | ((context: Context) => string | undefined) | ((context: Context) => Promise<string | undefined>) | undefined
-
-interface ConfigData {
-  include: string[];
-  exclude?: string[];
-  base?: string;
-  postScript?: Script | Script[];
-  releaseRepository?: string;
-  releaseBranchName?: string;
-  notClean?: boolean;
-  askVersion?: boolean;
-  changesGitStaged?: boolean;
-  execOptions?: childProcess.ExecOptions;
 }
 
 process.on('SIGINT', () => {

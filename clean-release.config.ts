@@ -1,4 +1,6 @@
-module.exports = {
+import { ConfigData } from './dist/core'
+
+export default {
   include: [
     'bin/*',
     'dist/*.js',
@@ -20,4 +22,4 @@ module.exports = {
     'git push',
     ({ version }) => `git push origin v${version}`
   ]
-}
+} as ConfigData

@@ -16,7 +16,7 @@ A CLI tool to copy files to be released into a tmp clean directory for npm publi
 
 ## usage
 
-run `clean-release` or `clean-release --config clean-release.config.js`
+run `clean-release` or `clean-release --config clean-release.config.js` or `clean-release --config clean-release.config.ts`
 
 ## config
 
