@@ -3,7 +3,7 @@ import { ConfigData } from './dist/core'
 export default {
   include: [
     'bin/*',
-    'dist/*.js',
+    'dist/*',
     'LICENSE',
     'package.json',
     'README.md'
