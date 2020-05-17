@@ -1,4 +1,5 @@
 import type * as childProcess from 'child_process'
+import type * as cleanScripts from 'clean-scripts'
 
 interface Context {
   dir: string
@@ -6,7 +7,7 @@ interface Context {
   tag?: string | number
 }
 
-type Script = string | ((context: Context) => string | undefined) | ((context: Context) => Promise<string | undefined>) | undefined
+type Script = string | ((context: Context) => cleanScripts.Script) | ((context: Context) => Promise<cleanScripts.Script>) | undefined
 
 export interface ConfigData {
   include: string[];

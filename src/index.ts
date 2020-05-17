@@ -9,6 +9,7 @@ import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
 import { askVersion } from 'npm-version-cli'
 import * as semver from 'semver'
+import { executeScriptAsync } from 'clean-scripts'
 import * as packageJson from '../package.json'
 import { ConfigData } from './core'
 
@@ -172,7 +173,7 @@ async function executeCommandLine() {
               tag
             })
             if (script) {
-              await exec(script, configData.execOptions)
+              await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
             }
           }
         }
@@ -186,7 +187,7 @@ async function executeCommandLine() {
             tag
           })
           if (script) {
-            await exec(script, configData.execOptions)
+            await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
           }
         }
       }
