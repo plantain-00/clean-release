@@ -9,9 +9,9 @@ import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
 import { askVersion } from 'npm-version-cli'
 import * as semver from 'semver'
-import { executeScriptAsync } from 'clean-scripts'
+import { executeScriptAsync, logTimes, Time } from 'clean-scripts'
 import * as packageJson from '../package.json'
-import { ConfigData } from './core'
+import { Configuration } from './core'
 
 function showToolVersion() {
   console.log(`Version: ${packageJson.version}`)
@@ -91,7 +91,7 @@ async function executeCommandLine() {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  let configData: ConfigData & { default?: ConfigData } = require(configFilePath)
+  let configData: Configuration & { default?: Configuration } = require(configFilePath)
   if (configData.default) {
     configData = configData.default;
   }
@@ -160,6 +160,7 @@ async function executeCommandLine() {
       const versionData = semver.parse(packageJsonData.version)
       const tag = versionData && versionData.prerelease.length > 0 ? versionData.prerelease[0] : undefined
       if (Array.isArray(configData.postScript)) {
+        const totalTime: Time[] = []
         for (const postScript of configData.postScript) {
           if (!postScript) {
             continue
@@ -173,10 +174,12 @@ async function executeCommandLine() {
               tag
             })
             if (script) {
-              await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
+              const times = await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
+              totalTime.push(...times)
             }
           }
         }
+        logTimes(totalTime)
       } else if (configData.postScript) {
         if (typeof configData.postScript === 'string') {
           await exec(fillScript(configData.postScript, result.name, packageJsonData.version), configData.execOptions)
@@ -187,7 +190,8 @@ async function executeCommandLine() {
             tag
           })
           if (script) {
-            await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
+            const times = await executeScriptAsync(script, undefined, undefined, undefined, configData.execOptions)
+            logTimes(times)
           }
         }
       }

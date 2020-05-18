@@ -9,7 +9,12 @@ interface Context {
 
 type Script = string | ((context: Context) => cleanScripts.Script) | ((context: Context) => Promise<cleanScripts.Script>) | undefined
 
-export interface ConfigData {
+/**
+ * @public
+ */
+export type ConfigData = Configuration
+
+export interface Configuration {
   include: string[];
   exclude?: string[];
   base?: string;

@@ -623,9 +623,9 @@ class-utils@^0.3.5:
     static-extend "^0.1.1"
 
 clean-scripts@1:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/clean-scripts/-/clean-scripts-1.14.0.tgz#8b330690aabe30b10ffbcf32949a1898e323af63"
-  integrity sha512-5V2qNQgkdu2xkuPYA34NA2h2pa/OUDrbF1g2b3NrRkOkVzEk1eALKdAJt5mW3QOomVl+/lXutYKemZrMcY4oCw==
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/clean-scripts/-/clean-scripts-1.15.0.tgz#6ad9cecbb28cee272515f285ed657fddf301fe5e"
+  integrity sha512-YjK97+9l1rxyv3D7IySiuzYkSkJ7N3yygTkwU47ysWewKcfu++6qysUrgFGZPcfD0PaTBZNhR8V57tWCJgNoOA==
   dependencies:
     minimist "1"
     pidusage "2"
