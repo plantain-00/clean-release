@@ -1,6 +1,6 @@
 {
   "name": "clean-release",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "description": "A CLI tool to copy files to be released into a tmp clean directory for npm publishing, electronjs packaging, docker image creation, or deployment",
   "main": "dist/core.js",
   "types": "dist/core.d.ts",
