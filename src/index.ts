@@ -17,6 +17,19 @@ function showToolVersion() {
   console.log(`Version: ${packageJson.version}`)
 }
 
+function showHelp() {
+  console.log(`Version ${packageJson.version}
+Syntax:   clean-release [options]
+Examples: clean-release
+          clean-release --config clean-release.config.js
+          clean-release --config clean-release.config.ts
+Options:
+ -h, --help                                         Print this message.
+ -v, --version                                      Print the version
+ --config                                           Config file
+`)
+}
+
 function globAsync(pattern: string, ignore?: string | string[]) {
   return new Promise<string[]>((resolve, reject) => {
     glob(pattern, { ignore }, (error, matches) => {
@@ -68,11 +81,18 @@ async function executeCommandLine() {
     config?: string
     v?: unknown
     version?: unknown
+    h?: unknown
+    help?: unknown
   }
 
   const showVersion = argv.v || argv.version
   if (showVersion) {
     showToolVersion()
+    return
+  }
+
+  if (argv.h || argv.help) {
+    showHelp()
     return
   }
 
