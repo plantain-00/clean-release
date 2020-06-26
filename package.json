@@ -24,8 +24,6 @@
   },
   "homepage": "https://github.com/plantain-00/clean-release#readme",
   "devDependencies": {
-    "@commitlint/cli": "9.0.1",
-    "@commitlint/config-conventional": "9.0.1",
     "@types/glob": "7.1.2",
     "@types/minimist": "1.2.0",
     "@types/mkdirp": "1.0.1",
