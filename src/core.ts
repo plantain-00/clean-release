@@ -5,6 +5,7 @@ interface Context {
   dir: string
   version: string
   tag?: string | number
+  effectedWorkspacePaths?: string[][]
 }
 
 type Script = string | ((context: Context) => cleanScripts.Script) | ((context: Context) => Promise<cleanScripts.Script>) | undefined

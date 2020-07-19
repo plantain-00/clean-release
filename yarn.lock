@@ -906,6 +906,15 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
+git-commits-to-changelog@1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/git-commits-to-changelog/-/git-commits-to-changelog-1.2.1.tgz#8901028df7c646295359d66e28fc0be2997c6bfe"
+  integrity sha512-k1MOUHDdWATrrE2f+1S/wnFCYN94EAqTiTUxU4gsqVLXCWJfqBXHPo3qau0KLcRlUujXrLrkjaSkrUiTo5QQgw==
+  dependencies:
+    minimist "1"
+    semver "7"
+    tslib "1 || 2"
+
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -1498,11 +1507,13 @@ no-unused-export@1.11.1:
     tslib "1 || 2"
     typescript "3"
 
-npm-version-cli@1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-1.3.1.tgz#233ee79d8aa4fc729efe3d05b0c5c73709b37ccf"
-  integrity sha512-PszzV+9LojyxpkBwZL7DgKFPG5u8+aKp0Wd72NniHIwy6JqQ06xbVLn8YVkuaZuHN7hnefsaYujJI/ZODRCdYQ==
+npm-version-cli@2:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/npm-version-cli/-/npm-version-cli-2.0.0.tgz#ee6a1834ab7c8741f43419375efcc1a1e53b64a0"
+  integrity sha512-gw7DZFSnFX0skHnswY7zQC0JjEKnV7xZmIS7+PZnw3znxjSwwWbUTD1dRh1SU62DILORtoN4MnI+ZGMjZg6soQ==
   dependencies:
+    git-commits-to-changelog "1"
+    glob "7"
     inquirer "7"
     minimist "1"
     semver "7"

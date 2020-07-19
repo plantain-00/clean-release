@@ -55,6 +55,7 @@ type Context = {
   dir: string
   version: string
   tag: string | undefined
+  effectedWorkspacePaths?: string[][]
 }
 ```
 
@@ -89,6 +90,36 @@ module.exports = {
     `7z a -r -tzip dist/${name}-win32-x64-$${version}.zip dist/${name}-win32-x64/`,
     `electron-installer-windows --src dist/${name}-win32-x64/ --dest dist/`,
     `cd dist && create-dmg ${name}-darwin-x64/${name}.app`
+  ]
+}
+```
+
+## yarn workspaces demo
+
+```js
+export default {
+  include: [
+    'packages/*/dist/*',
+    'packages/*/package.json',
+    'packages/*/README.md',
+    'LICENSE',
+    'package.json',
+    'README.md'
+  ],
+  exclude: [
+  ],
+  askVersion: true,
+  changesGitStaged: true,
+  postScript: ({ dir, tag, version, effectedWorkspacePaths }) => [
+    ...effectedWorkspacePaths.map((w) => w.map((e) => {
+      return tag
+        ? `npm publish "${dir}/${e}" --access public --tag ${tag}`
+        : `npm publish "${dir}/${e}" --access public`
+    })),
+    `git commit -m "${version}"`,
+    `git tag -a v${version} -m 'v${version}'`,
+    'git push',
+    `git push origin v${version}`
   ]
 }
 ```

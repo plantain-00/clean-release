@@ -126,8 +126,13 @@ async function executeCommandLine() {
     }
   }
 
+  let effectedWorkspacePaths: string[][] | undefined
   if (configData.askVersion) {
-    packageJsonData.version = await askVersion()
+    const { version, effectedWorkspaces } = await askVersion()
+    packageJsonData.version = version
+    if (effectedWorkspaces) {
+      effectedWorkspacePaths = effectedWorkspaces.map((w) => w.map((e) => e.path))
+    }
   }
 
   const result = tmp.dirSync()
@@ -191,6 +196,7 @@ async function executeCommandLine() {
             const script = await postScript({
               dir: result.name,
               version: packageJsonData.version,
+              effectedWorkspacePaths,
               tag
             })
             if (script) {
@@ -207,6 +213,7 @@ async function executeCommandLine() {
           const script = await configData.postScript({
             dir: result.name,
             version: packageJsonData.version,
+            effectedWorkspacePaths,
             tag
           })
           if (script) {
