@@ -1,11 +1,16 @@
 # Change Log
 
+## [2.14.0](https://github.com/plantain-00/clean-release/compare/v2.13.0...v2.14.0) (2020-08-08)
+  
+* refactor: use cp-file to reduce size ([127c77d](https://github.com/plantain-00/clean-release/commit/127c77d27c6b97eb78d98ed0159e8bca7b9e600e))
+* chore: update dependencies ([abee2ac](https://github.com/plantain-00/clean-release/commit/abee2ac12b0b463c4f6af2eb00a7881312ef6db5)) ([de7f898](https://github.com/plantain-00/clean-release/commit/de7f89885b8aa19be4a95f2247fe5c14b338d823)) ([3aa8014](https://github.com/plantain-00/clean-release/commit/3aa801404c6616ce702076d20865a08e64c1e3fa))
+* chore: add changelog ([aa99954](https://github.com/plantain-00/clean-release/commit/aa99954f2b06cdd41964bbce15b8e2a32674f745))
+
 ## [2.13.0](https://github.com/plantain-00/clean-release/compare/v2.12.0...v2.13.0) (2020-07-19)
   
 * chore: release with changelog ([6ae9ef9](https://github.com/plantain-00/clean-release/commit/6ae9ef9b177ddff5be2bb5bb17d77554fa7a7389))
 * feat: add effectedWorkspacePaths ([38ded8d](https://github.com/plantain-00/clean-release/commit/38ded8d36fa448041ef773a345b7a9eefdcbf0f2))
 * chore: update dependencies ([48f5382](https://github.com/plantain-00/clean-release/commit/48f53825f6866f7fa8c2748160f69998120a2d02)) ([2a8b228](https://github.com/plantain-00/clean-release/commit/2a8b228616d5c9cf31e56d51fcfa6c6689ad49a4)) ([db49be5](https://github.com/plantain-00/clean-release/commit/db49be590030fdb3a22d56d45bbda13bc0599299)) ([af83c53](https://github.com/plantain-00/clean-release/commit/af83c5388de2e98621469a575155aaef6cd75983))
-* chore(deps): bump lodash from 4.17.15 to 4.17.19 ([d1d5e36](https://github.com/plantain-00/clean-release/commit/d1d5e367f56392a0469f58a2eefb6706e8cd425a))
 * docs: add github ci badge ([b448f83](https://github.com/plantain-00/clean-release/commit/b448f83cb496051371defd112fdf767a9b5aa10c))
 * chore: remove tsconfig.eslint.json ([0f75282](https://github.com/plantain-00/clean-release/commit/0f752828515dd88bb90c57a3057a0e128097e6d3))
 * chore: reuse tsconfig.json ([0b586be](https://github.com/plantain-00/clean-release/commit/0b586be54c8f9b44a9f5779535557d12ec8a1a38))
@@ -62,7 +67,6 @@
   
 * chore: update dependencies ([2b3f2ff](https://github.com/plantain-00/clean-release/commit/2b3f2ff0b800ac3b9aefb389a0dd901dbcbf77d2)) ([1c3a54d](https://github.com/plantain-00/clean-release/commit/1c3a54d12da7cf739a786ad4e8640af52a2bdeae)) ([e1ad7ae](https://github.com/plantain-00/clean-release/commit/e1ad7ae577756dd52331b2a243d96db2e18991d1)) ([e0fc957](https://github.com/plantain-00/clean-release/commit/e0fc9578509c993215170270266b7879ab475805))
 * chore: add github ci ([0590486](https://github.com/plantain-00/clean-release/commit/059048606568aa2b382608c3559f369ea067c797))
-* chore: github ci test ([2577b67](https://github.com/plantain-00/clean-release/commit/2577b674015005d3ed51c4bf85d962401a367add))
 
 ## [2.7.1](https://github.com/plantain-00/clean-release/compare/v2.7.0...v2.7.1) (2020-02-15)
   
@@ -80,7 +84,7 @@
 
 ## [2.6.0](https://github.com/plantain-00/clean-release/compare/v2.5.3-alpha.0...v2.6.0) (2018-06-13)
 
-## [2.5.3-alpha.0](https://github.com/plantain-00/clean-release/compare/v2.5.2...v2.5.3-alpha.0) (2018-06-13)
+### [2.5.3-alpha.0](https://github.com/plantain-00/clean-release/compare/v2.5.2...v2.5.3-alpha.0) (2018-06-13)
   
 * feat: tag can be used in post script ([a755653](https://github.com/plantain-00/clean-release/commit/a755653601c777d472975459320939b41e827461))
 * chore: update dependencies ([2260f45](https://github.com/plantain-00/clean-release/commit/2260f45f7d793ffc06edcd327971509699812c14)) ([7d73c75](https://github.com/plantain-00/clean-release/commit/7d73c75bbbf781c1cc7e7a36c6a224230e06297d)) ([0f53c56](https://github.com/plantain-00/clean-release/commit/0f53c56ee4d51677381f3e179e0dc5a897d64162))
@@ -93,15 +97,15 @@
   
 * fix: cleanup before exiting ([74ad5f6](https://github.com/plantain-00/clean-release/commit/74ad5f6c6348f56e27d7f99b1223dfe176e549a6))
 
-## [2.5.1-alpha.2](https://github.com/plantain-00/clean-release/compare/v2.5.1-alpha.1...v2.5.1-alpha.2) (2018-05-16)
+### [2.5.1-alpha.2](https://github.com/plantain-00/clean-release/compare/v2.5.1-alpha.1...v2.5.1-alpha.2) (2018-05-16)
   
 * fix: kill child processes when killing by parent process ([3ef928a](https://github.com/plantain-00/clean-release/commit/3ef928a14753eb64c973244f859bec107a750e0d))
 
-## [2.5.1-alpha.1](https://github.com/plantain-00/clean-release/compare/v2.5.1-alpha.0...v2.5.1-alpha.1) (2018-05-16)
+### [2.5.1-alpha.1](https://github.com/plantain-00/clean-release/compare/v2.5.1-alpha.0...v2.5.1-alpha.1) (2018-05-16)
   
 * fix: kill all child processes before program exits ([9ab963a](https://github.com/plantain-00/clean-release/commit/9ab963a87b1e4010bf50b281e5817b12aaa14a1b))
 
-## [2.5.1-alpha.0](https://github.com/plantain-00/clean-release/compare/v2.5.0...v2.5.1-alpha.0) (2018-05-16)
+### [2.5.1-alpha.0](https://github.com/plantain-00/clean-release/compare/v2.5.0...v2.5.1-alpha.0) (2018-05-16)
   
 * fix: can handle SIGINT ([329ca24](https://github.com/plantain-00/clean-release/commit/329ca248e470a5cc1a626e81ecbea179ccf161db))
 * build: use tslint-sonarts ([aea1def](https://github.com/plantain-00/clean-release/commit/aea1deff61ecee27b535c6b83ab4c63d503abfce))
@@ -109,7 +113,7 @@
 
 ## [2.5.0](https://github.com/plantain-00/clean-release/compare/v2.5.0-beta.0...v2.5.0) (2018-04-24)
 
-## [2.5.0-beta.0](https://github.com/plantain-00/clean-release/compare/v2.4.0...v2.5.0-beta.0) (2018-04-24)
+### [2.5.0-beta.0](https://github.com/plantain-00/clean-release/compare/v2.4.0...v2.5.0-beta.0) (2018-04-24)
   
 * feat: support postScript function ([7dade6a](https://github.com/plantain-00/clean-release/commit/7dade6a7dad1fcd979ec976bdebc545259424b74))
 * chore: update dependencies ([e2bd091](https://github.com/plantain-00/clean-release/commit/e2bd091ba10ebd825c78e4ccd6ce49a5f2407a0d)) ([f28c595](https://github.com/plantain-00/clean-release/commit/f28c59560503d754aa93ddc42cbe4a04645d5a4e))
