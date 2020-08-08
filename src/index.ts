@@ -3,7 +3,7 @@ import minimist from 'minimist'
 import * as path from 'path'
 import glob from 'glob'
 import * as fs from 'fs'
-import cpy from 'cpy'
+import cpFile from 'cp-file'
 import mkdirp from 'mkdirp'
 import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
@@ -172,7 +172,7 @@ async function executeCommandLine() {
         const directoryPath = path.resolve(result.name, relativePath)
         await mkdirp(directoryPath)
 
-        await cpy(file, directoryPath)
+        await cpFile(file, path.resolve(directoryPath, path.basename(file)))
         console.log(`Copied: ${file} To:  ${relativePath}`)
       }
     }

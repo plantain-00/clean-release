@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "clean-scripts": "1",
-    "cpy": "8",
+    "cp-file": "9",
     "glob": "7",
     "minimist": "1",
     "mkdirp": "1",
