@@ -55,5 +55,8 @@
     "npm-version-cli": "2",
     "rimraf": "3",
     "tmp": "0.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
