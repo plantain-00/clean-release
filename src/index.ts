@@ -227,7 +227,7 @@ async function executeCommandLine() {
     if (!configData.notClean) {
       rimraf.sync(result.name)
     }
-  } catch (error) {
+  } catch (error: unknown) {
     if (!configData.notClean) {
       rimraf.sync(result.name)
     }
