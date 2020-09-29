@@ -1,5 +1,13 @@
 # Change Log
 
+## [2.15.1](https://github.com/plantain-00/clean-release/compare/v2.14.0...v2.15.1) (2020-09-29)
+  
+* chore: add release script ([e043c74](https://github.com/plantain-00/clean-release/commit/e043c7410924cb7eb1d619e4dd08d9e50d1aa126))
+* feat: support --only-changed-packages and --effected-packages ([07150cb](https://github.com/plantain-00/clean-release/commit/07150cb96e7dd67dc18ebe29a8517674481d2750))
+* chore: update dependencies ([939e5ec](https://github.com/plantain-00/clean-release/commit/939e5ec6dbecacbc5fff39292f0dd7daf8ce1ecb)) ([bb2449b](https://github.com/plantain-00/clean-release/commit/bb2449b7f4781a8960d4e063e9b7a7818f048c86)) ([6638a95](https://github.com/plantain-00/clean-release/commit/6638a958f26a1850427bb6f3417ae28d030f5cad)) ([bcfcae1](https://github.com/plantain-00/clean-release/commit/bcfcae11df54284e5d439d6339e0475c9f36f13f)) ([a3882ff](https://github.com/plantain-00/clean-release/commit/a3882ff35c8889b1debc5671f5c09bb6ef29f850)) ([0f9b002](https://github.com/plantain-00/clean-release/commit/0f9b002f31e5ed2f050f14969c4d5c76f77a630a))
+* fix: add missing parserOptions ([a471afa](https://github.com/plantain-00/clean-release/commit/a471afa133d67cfdb6d275cd1e308361dad5b67d))
+* build: add missing publishConfig ([2947784](https://github.com/plantain-00/clean-release/commit/29477849d751e02de76694f8bd4ce8cae840b424))
+
 ## [2.14.0](https://github.com/plantain-00/clean-release/compare/v2.13.0...v2.14.0) (2020-08-08)
   
 * refactor: use cp-file to reduce size ([127c77d](https://github.com/plantain-00/clean-release/commit/127c77d27c6b97eb78d98ed0159e8bca7b9e600e))
