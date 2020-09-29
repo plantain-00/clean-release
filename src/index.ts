@@ -7,7 +7,7 @@ import cpFile from 'cp-file'
 import mkdirp from 'mkdirp'
 import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
-import { askVersion } from 'npm-version-cli'
+import { askVersion, Options } from 'npm-version-cli'
 import * as semver from 'semver'
 import { executeScriptAsync, logTimes, Time } from 'clean-scripts'
 import * as packageJson from '../package.json'
@@ -23,10 +23,14 @@ Syntax:   clean-release [options]
 Examples: clean-release
           clean-release --config clean-release.config.js
           clean-release --config clean-release.config.ts
+          clean-release --only-changed-packages
+          clean-release --effected-packages foo --effected-packages bar
 Options:
  -h, --help                                         Print this message.
  -v, --version                                      Print the version
  --config                                           Config file
+ --only-changed-packages                            Only changed packages will bump.
+ --effected-packages                                The packages will be considered as effected packages.
 `)
 }
 
@@ -83,6 +87,8 @@ async function executeCommandLine() {
     version?: unknown
     h?: unknown
     help?: unknown
+    'only-changed-packages'?: unknown
+    'effected-packages'?: unknown
   }
 
   const showVersion = argv.v || argv.version
@@ -128,7 +134,17 @@ async function executeCommandLine() {
 
   let effectedWorkspacePaths: string[][] | undefined
   if (configData.askVersion) {
-    const { version, effectedWorkspaces } = await askVersion()
+    const effectedPackages: string[] = []
+    if (typeof argv["effected-packages"] === 'string') {
+      effectedPackages.push(argv["effected-packages"])
+    } else if (Array.isArray(argv["effected-packages"])) {
+      effectedPackages.push(...argv["effected-packages"])
+    }
+    const options: Partial<Options> = {
+      onlyChangedPackages: !!argv['only-changed-packages'],
+      effectedPackages,
+    }
+    const { version, effectedWorkspaces } = await askVersion(options)
     packageJsonData.version = version
     if (effectedWorkspaces) {
       effectedWorkspacePaths = effectedWorkspaces.map((w) => w.map((e) => e.path))

@@ -26,6 +26,8 @@ key | description
 -config | config file
 -h,--help | Print this message.
 -v,--version | Print the version
+--only-changed-packages | Only changed packages will bump.
+--effected-packages | The packages will be considered as effected packages.
 
 ## config
 
