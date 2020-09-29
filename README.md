@@ -43,6 +43,7 @@ notClean | boolean? | if true, do not clean the tmp directory
 askVersion | boolean? | if true, will ask promp version
 changesGitStaged | boolean? | if true, will make sure all changes is git staged
 execOptions | childProcess.ExecOptions? | passed to `childProcess.exec`
+onlyChangedPackages | boolean? | if true, for monorepo, only bump changed packages
 
 ## post script
 

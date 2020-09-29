@@ -141,7 +141,7 @@ async function executeCommandLine() {
       effectedPackages.push(...argv["effected-packages"])
     }
     const options: Partial<Options> = {
-      onlyChangedPackages: !!argv['only-changed-packages'],
+      onlyChangedPackages: !!argv['only-changed-packages'] || configData.onlyChangedPackages,
       effectedPackages,
     }
     const { version, effectedWorkspaces } = await askVersion(options)

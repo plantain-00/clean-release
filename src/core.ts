@@ -26,4 +26,5 @@ export interface Configuration {
   askVersion?: boolean;
   changesGitStaged?: boolean;
   execOptions?: childProcess.ExecOptions;
+  onlyChangedPackages?: boolean
 }
