@@ -1,5 +1,9 @@
 # Change Log
 
+## [2.15.2](https://github.com/plantain-00/clean-release/compare/v2.15.1...v2.15.2) (2020-09-30)
+  
+* feat: support onlyChangedPackages in config ([617a946](https://github.com/plantain-00/clean-release/commit/617a94616d4edb6d90e84565b8f39d4de074136c))
+
 ## [2.15.1](https://github.com/plantain-00/clean-release/compare/v2.14.0...v2.15.1) (2020-09-29)
   
 * chore: add release script ([e043c74](https://github.com/plantain-00/clean-release/commit/e043c7410924cb7eb1d619e4dd08d9e50d1aa126))
