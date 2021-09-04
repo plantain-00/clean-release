@@ -173,7 +173,7 @@ async function executeCommandLine() {
     if (!configData.include || configData.include.length === 0) {
       throw new Error('Expect at least one pattern.')
     }
-    const uniqFiles = await globAsync(configData.include.length === 1 ? configData.include[0] : `{${configData.include.join(',')}}`, configData.exclude)
+    const uniqFiles = await globAsync(configData.include.length === 1 ? configData.include[0]! : `{${configData.include.join(',')}}`, configData.exclude)
 
     for (const file of uniqFiles) {
       if (!fs.existsSync(file)) {
@@ -261,7 +261,7 @@ function cleanup() {
     const ps = stdout.split('\n')
       .map(s => s.split(' ').filter(s => s))
       .filter((s, i) => i > 0 && s.length >= 2)
-      .map(s => ({ pid: +s[1], ppid: +s[2] }))
+      .map(s => ({ pid: +s[1]!, ppid: +s[2]! }))
     const result: number[] = []
     collectPids(process.pid, ps, result)
     for (const pid of result) {
@@ -277,7 +277,7 @@ function cleanup() {
 executeCommandLine().then(() => {
   cleanup()
   process.exit()
-},error => {
+}, (error: unknown) => {
   if (error instanceof Error) {
     console.log(error.message)
   } else {
