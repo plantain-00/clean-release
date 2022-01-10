@@ -182,8 +182,18 @@ async function executeCommandLine() {
 
       if (fs.statSync(file).isFile()) {
         let relativePath = path.relative('.', path.dirname(file))
-        if (configData.base && relativePath.startsWith(configData.base)) {
-          relativePath = path.relative(configData.base, relativePath)
+        if (configData.base) {
+          if (typeof configData.base === 'string') {
+            if (relativePath.startsWith(configData.base)) {
+              relativePath = path.relative(configData.base, relativePath)
+            }
+          } else {
+            for (const base of configData.base) {
+              if (relativePath.startsWith(base)) {
+                relativePath = path.relative(base, relativePath)
+              }
+            }
+          }
         }
         const directoryPath = path.resolve(result.name, relativePath)
         await mkdirp(directoryPath)
