@@ -1,5 +1,10 @@
 # Change Log
 
+## [2.17.0](https://github.com/plantain-00/clean-release/compare/v2.16.0...v2.17.0) (2022-01-31)
+  
+* feat: base supports function ([740f6b3](https://github.com/plantain-00/clean-release/commit/740f6b38295065833df13a7efabb67ada1507656))
+* chore: update dependencies ([4a6c1c5](https://github.com/plantain-00/clean-release/commit/4a6c1c56be4b36524e0a10e0eb10d1a45096d421)) ([e3e1e59](https://github.com/plantain-00/clean-release/commit/e3e1e593a3e09b17459012f2e58e30e06a0c3436))
+
 ## [2.16.0](https://github.com/plantain-00/clean-release/compare/v2.15.2...v2.16.0) (2022-01-10)
   
 * feat: support multiple base ([f1a8afd](https://github.com/plantain-00/clean-release/commit/f1a8afdb58b43f6d6826e44d22be5be1c9eb955b))
