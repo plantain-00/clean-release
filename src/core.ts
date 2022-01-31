@@ -18,7 +18,7 @@ export type ConfigData = Configuration
 export interface Configuration {
   include: string[];
   exclude?: string[];
-  base?: string | string[];
+  base?: string | string[] | ((path: string) => string);
   postScript?: Script | Script[];
   releaseRepository?: string;
   releaseBranchName?: string;

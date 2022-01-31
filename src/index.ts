@@ -187,12 +187,14 @@ async function executeCommandLine() {
             if (relativePath.startsWith(configData.base)) {
               relativePath = path.relative(configData.base, relativePath)
             }
-          } else {
+          } else if (Array.isArray(configData.base)) {
             for (const base of configData.base) {
               if (relativePath.startsWith(base)) {
                 relativePath = path.relative(base, relativePath)
               }
             }
+          } else {
+            relativePath = configData.base(relativePath)
           }
         }
         const directoryPath = path.resolve(result.name, relativePath)
