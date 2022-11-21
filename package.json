@@ -52,7 +52,6 @@
     "cp-file": "9",
     "glob": "7 || 8",
     "minimist": "1",
-    "mkdirp": "1",
     "npm-version-cli": "2",
     "rimraf": "3",
     "tmp": "0.2"

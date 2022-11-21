@@ -4,7 +4,6 @@ import * as path from 'path'
 import glob from 'glob'
 import * as fs from 'fs'
 import cpFile from 'cp-file'
-import mkdirp from 'mkdirp'
 import * as childProcess from 'child_process'
 import * as rimraf from 'rimraf'
 import { askVersion, Options } from 'npm-version-cli'
@@ -198,7 +197,7 @@ async function executeCommandLine() {
           }
         }
         const directoryPath = path.resolve(result.name, relativePath)
-        await mkdirp(directoryPath)
+        fs.mkdirSync(directoryPath, { recursive: true })
 
         await cpFile(file, path.resolve(directoryPath, path.basename(file)))
         console.log(`Copied: ${file} To:  ${relativePath}`)
