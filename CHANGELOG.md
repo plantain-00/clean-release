@@ -1,5 +1,11 @@
 # Change Log
 
+## [2.18.0](https://github.com/plantain-00/clean-release/compare/v2.17.1...v2.18.0) (2022-12-11)
+  
+* feat: can use @esbuild-kit/cjs-loader ([3068009](https://github.com/plantain-00/clean-release/commit/3068009d8573d82103101855051cdbb9916fea76))
+* chore: update dependencies ([46648c6](https://github.com/plantain-00/clean-release/commit/46648c609482aa7a534ca1776e8343bd6efe0785))
+* chore: remove unused devDependencies ([56c2da3](https://github.com/plantain-00/clean-release/commit/56c2da3f48794a46d05455e462a2c74cb3004d12))
+
 ## [2.17.1](https://github.com/plantain-00/clean-release/compare/v2.17.0...v2.17.1) (2022-11-21)
   
 * refactor: remove mkdirp ([fa30876](https://github.com/plantain-00/clean-release/commit/fa30876af015d47dac014ef623aa28d7bea16fd5))
